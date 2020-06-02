@@ -46,7 +46,7 @@ export default class App extends Component {
               <Route path="/faq" component={Faq} />
               <Route path="/about" component={About} />
               <Route path="/account" component={Account} /> {/* unique to user */}
-               <Route path="/" component={HowItWorks} hello={"he"} /> {/*landing page before log in */}
+              <Route path="/" component={HowItWorks} /> {/* landing page before log in*/}
             </Switch>
           </div>
         </Router >
