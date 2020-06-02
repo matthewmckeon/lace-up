@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-export default class howItWorks extends Component {
+export default class HowItWorks extends Component {
     render() {
         return (
             <div>
-                Example landing page
+                Landing Page
             </div>
         )
     }
