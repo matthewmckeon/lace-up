@@ -1,0 +1,8 @@
+REACT_APP_FIREBASE_KEY = "AIzaSyCbbyyF8TmG_0OgNJaM_DahLg-Ag6bEdtQ"
+REACT_APP_FIREBASE_DOMAIN = "lace-up-referral-program.firebaseapp.com"
+REACT_APP_FIREBASE_DATABASE = "https://lace-up-referral-program.firebaseio.com"
+REACT_APP_FIREBASE_PROJECT_ID = "lace-up-referral-program",
+REACT_APP_FIREBASE_STORAGE_BUCKET = "lace-up-referral-program.appspot.com"
+REACT_APP_FIREBASE_SENDER_ID = "726777010510"
+REACT_APP_FIREBASE_APP_ID = "1:726777010510:web:78cc24ab9a1ce597e2e61f"
+REACT_APP_FIREBASE_MEASUREMENT_ID = "G-ETPYX59X0E" 
