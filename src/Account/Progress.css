@@ -1,0 +1,31 @@
+.indexedStepaccomplished {
+  text-align: center;
+  background-color: #124559;
+  color: white;
+  font-weight: bold;
+  height: 25px;
+  width: 33px;
+  border-radius: 50%;
+  padding-top: 8px;
+}
+.indexedStep {
+  text-align: center;
+  background-color: #124559;
+  color: white;
+  font-weight: bold;
+  height: 25px;
+  width: 33px;
+  border-radius: 50%;
+  padding-top: 8px;
+  filter: grayscale(80%);
+}
+
+.referrals {
+  text-align: center;
+  margin-top: -15px;
+  padding-top: 10px;
+  height: 2em;
+  background-color: #ffb20f;
+  width: 100%;
+  color: white;
+}
