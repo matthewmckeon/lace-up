@@ -6,13 +6,8 @@ import Faq from "./FAQ/Faq.js";
 import About from "./About/About.js";
 import Account from "./Account/Account.js";
 import NavBar from "./navComps/navBar.js";
-<<<<<<< HEAD
 import HowItWorks from "./LandingPage/HowItWorks.js";
-import {base} from './config/Firebase';
-=======
-import howItWorks from "./LandingPage/howItWorks.js";
 import { base } from './config/Firebase';
->>>>>>> 51ac3501fab1b06bd2cd26bf9c2d459511af827e
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 export default class App extends Component {
@@ -26,11 +21,11 @@ export default class App extends Component {
   }
 
   addUser = () => {
-    const users = {...this.state.user};
+    const users = { ...this.state.user };
     users[0] = {
       name: "John Smith"
     };
-    this.setState({users});
+    this.setState({ users });
   }
 
   componentWillMount() {
@@ -42,6 +37,8 @@ export default class App extends Component {
 
   componentWillUnmount() {
     base.removeBinding(this.usersRef)
+  }
+
   componentDidMount() {
     let isInitialized = new Promise(resolve => {
       base.initializedApp.auth().onAuthStateChanged(resolve)
@@ -58,7 +55,6 @@ export default class App extends Component {
     return (
       <div>
         <NavBar />
-        <button onClick = {this.addUser}>Add User</button>
         <Router>
           <div className="App">
             <Switch>
@@ -82,7 +78,7 @@ export default class App extends Component {
                   />
                 }
               />
-              <Route path="/" component={howItWorks} /> {/* landing page before log in*/}
+              <Route path="/" component={HowItWorks} /> {/* landing page before log in*/}
 
             </Switch>
           </div>
