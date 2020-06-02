@@ -1,42 +1,36 @@
-import React from 'react';
-import Header from './navComps/Header.js';
-import SideBar from './navComps/SideBar.js';
-import Backdrop from './navComps/Backdrop.js'
+import React, { Component } from 'react';
+import Faq from "./FAQ/Faq.js";
+import About from "./About/About.js";
+import Account from "./Account/Account.js";
+import NavBar from "./navComps/navBar.js";
+import howItWorks from "./LandingPage/howItWorks.js";
+import base from './config/Firebase';
 
-class App extends React.Component {
-  state = {
-    sideBarOpen: false
-  };
-
-  sideBarToggleClickHandler = () => {
-    this.setState((prevState) => {
-      return {sideBarOpen: !prevState.sideBarOpen};
-    });
-  }
-
-  backdropClickHandler = () => {
-    this.setState({sideBarOpen: false})
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+export default class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      users: {},
+      isLoggedIn: false,
+    }
   }
 
   render() {
-    let sideBar;
-    let backdrop;
-
-    if (this.state.sideBarOpen) {
-      sideBar = <SideBar />
-      backdrop = <Backdrop click={this.backdropClickHandler}/>
-    }
     return (
-      <div style={{height: '100%'}}>
-        <Header sideBarClickHandler={this.sideBarToggleClickHandler}/>
-        {sideBar}
-        {backdrop}
-        <main style={{marginTop: '100px'}}>
-          <p>This is the page content</p>
-        </main>
+      <div>
+        <NavBar />
+        <Router>
+          <div className="App">
+            <Switch>
+              <Route path="/faq" component={Faq} />
+              <Route path="/about" component={About} />
+              <Route path="/account" component={Account} /> {/* unique to user */}
+              <Route path="/" component={howItWorks} /> {/* landing page before log in*/}
+            </Switch>
+          </div>
+        </Router >
       </div>
     )
   }
 }
-
-export default App;
