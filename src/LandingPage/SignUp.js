@@ -52,7 +52,8 @@ export default class SignUp extends Component {
         return referralCode
     }
 
-    registerUser = async () => {
+    registerUser = async (e) => {
+        e.preventDefault();
         try {
             await base.initializedApp.auth().createUserWithEmailAndPassword(
                 this.state.user.email, this.state.user.password
@@ -103,6 +104,7 @@ export default class SignUp extends Component {
     }
 
     render() {
+        // console.log(this.props)
         let newAccountLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
         return (
             (this.state.redirect) ?
@@ -164,7 +166,7 @@ export default class SignUp extends Component {
                             type="submit"
                             variant="contained"
                             color="secondary"
-                            onClick={this.registerUser}
+                            onClick={e => this.registerUser(e)}
                         > Register
                     </Button>
                         <br />

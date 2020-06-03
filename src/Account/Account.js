@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Progress from "./Progress.js";
 import ProgressStats from "./ProgressStats.js";
+import { base } from '../config/Firebase';
+import firebase from 'firebase';
 
 export default class Account extends Component {
   constructor(props) {

@@ -28,8 +28,9 @@ export default class NavBar extends Component {
     render() {
         let sideBar;
         let backdrop;
-        console.log(base.initializedApp.auth().currentUser)
-        console.log(this.props.isLoggedIn)
+        // console.log(base.initializedApp.auth().currentUser)
+        // console.log(this.props)
+
         if (this.state.sideBarOpen) {
             sideBar = <SideBar
                 isLoggedIn={this.props.isLoggedIn}

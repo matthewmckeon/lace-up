@@ -31,7 +31,7 @@ export default class Logout extends Component {
     }
 
     render() {
-        console.log(base.initializedApp.auth().currentUser)
+        // console.log(base.initializedApp.auth().currentUser)
         return (
             (this.state.wantsToLogOut) ?
                 <Redirect to="/" />

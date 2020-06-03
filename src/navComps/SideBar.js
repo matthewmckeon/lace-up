@@ -10,26 +10,26 @@ const sideBar = props => (
         <ul>
             {/* {console.log(props)} */}
             {(props.isLoggedIn) ?
-                <li>
-                    <a href={'/account/' + props.users[props.currentUserCode].firstName +
+                <div>
+                    <li><a href={'/account/' + props.users[props.currentUserCode].firstName +
                         "/" + props.currentUserCode}>
                         {`${props.users[props.currentUserCode].firstName}'s Account`}
-                    </a>
-                </li>
-                :
-                <div></div>
-            }
-            <li><a href="/about">About</a></li>
-            <li><a href='/faq'>FAQs</a></li>
+                    </a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href='/faq'>FAQs</a></li>
+                    <li><a href='/log-out'>Log Out</a></li>
 
-            {(props.isLoggedIn) ?
-                <li><a href='/log-out'>Log Out</a></li>
+                </div>
                 :
                 <div>
+                    <li><a href="/about">About</a></li>
+                    <li><a href='/faq'>FAQs</a></li>
                     <li><a href='/login'>Login</a></li>
                     <li><a href='/register'>Register</a></li>
-                </div >
+                </div>
+
             }
+
 
         </ul >
     </nav >

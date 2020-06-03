@@ -17,7 +17,8 @@ export default class App extends Component {
       users: {},
       currentUserCode: "",
       isLoggedIn: false,
-      firebaseInitialized: false,
+      authListen: null,
+
     }
   }
 
@@ -34,45 +35,38 @@ export default class App extends Component {
     this.setState({ users });
   }
 
-  componentWillMount() {
+  componentWillMount = () => {
     this.usersRef = base.syncState('users', {
       context: this,
       state: "users"
     })
 
-    console.log('will')
-    this.checkLogin()
   }
 
-  componentDidMount() {
-    let isInitialized = new Promise(resolve => {
-      base.initializedApp.auth().onAuthStateChanged(resolve)
-    })
-    this.setState({ firebaseInitialized: isInitialized })
-
-    this.checkLogin()
-    console.log("did mount")
-
-
-  }
-
-  checkLogin = () => {
-    console.log(base.initializedApp.auth().currentUser)
-    if (base.initializedApp.auth().currentUser) {
-      this.setState({ isLoggedIn: true })
-      this.setState(prevState => {
-        return ({
-          currentUserCode: prevState.currentUserCode
-        })
-      })
-    } else {
-      console.log('failed')
-    }
-
+  componentDidMount = () => {
+    let authListener = base.initializedApp.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        console.log(user)
+        console.log("will mount")
+        this.checkLogin()
+      } else {
+        console.log("need to log in")
+      }
+    });
+    this.setState({ authListen: authListener })
   }
 
   componentWillUnmount() {
     base.removeBinding(this.usersRef)
+    this.state.authListen()
+  }
+
+  checkLogin = () => {
+    this.setState(prevState => {
+      return ({
+        currentUserCode: prevState.currentUserCode
+      })
+    })
   }
 
   toggleLoginState = (isLoggedIn) => {
@@ -92,19 +86,36 @@ export default class App extends Component {
           isLoggedIn={this.state.isLoggedIn}
           users={this.state.users}
           currentUserCode={this.state.currentUserCode}
-          firebaseInitialized={this.state.firebaseInitialized}
         />
         <Router>
           <div className="App">
             <Switch>
-              <Route path="/faq" component={Faq} />
-              <Route path="/about" component={About} />
-              <Route path="/account/:firstName/:userId" component={Account} /> {/* unique to user */}
+              <Route path="/faq"
+                render={(props) =>
+                  (<Faq
+                    {...props}
+                  />)
+                }
+              />
+              <Route path="/about"
+                render={(props) =>
+                  (<About
+                    {...props}
+                  />)
+                }
+              />
+              <Route path="/account/:firstName/:userId"
+                render={(props) => (
+                  <Account
+                    {...props}
+                  />
+                )}
+              /> {/* unique to user */}
               <Route path="/login"
                 render={(props) =>
                   (<Login
                     toggleLoginState={this.toggleLoginState} {...props}
-                    updateCurrentUser={this.updateCurrentUser}
+                    updateCurrentUser={this.updateCurrentUser} {...props}
                   />)
                 }
               />
@@ -112,8 +123,8 @@ export default class App extends Component {
                 render={(props) =>
                   <SignUp
                     toggleLoginState={this.toggleLoginState} {...props}
-                    addUser={this.addUser}
-                    updateCurrentUser={this.updateCurrentUser}
+                    addUser={this.addUser} {...props}
+                    updateCurrentUser={this.updateCurrentUser} {...props}
                   />
                 }
               />
@@ -121,11 +132,17 @@ export default class App extends Component {
                 render={(props) =>
                   (<Logout
                     toggleLoginState={this.toggleLoginState} {...props}
-                    currentUserCode={this.state.currentUserCode}
+                    currentUserCode={this.state.currentUserCode}{...props}
                   />)
                 }
               />
-              <Route path="/" component={HowItWorks} /> {/* landing page before log in*/}
+              <Route path="/"
+                render={(props) => (
+                  <HowItWorks
+                    {...props}
+                  />
+                )}
+              /> {/* landing page before log in*/}
 
             </Switch>
           </div>
