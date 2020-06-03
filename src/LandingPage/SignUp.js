@@ -13,7 +13,8 @@ export default class SignUp extends Component {
         super(props);
         this.state = {
             user: {
-                username: "",
+                firstName: "",
+                lastName: "",
                 email: "",
                 password: "",
                 referralCode: "", //unique code for each new user
@@ -57,7 +58,7 @@ export default class SignUp extends Component {
                 this.state.user.email, this.state.user.password
             )
             base.initializedApp.auth().currentUser.updateProfile({
-                displayName: this.state.user.username
+                displayName: this.state.user.firstName
             })
 
             this.props.toggleLoginState(true)
@@ -99,7 +100,7 @@ export default class SignUp extends Component {
     }
 
     render() {
-        let newAccountLink = '/account/' + this.state.user.username + "/" + this.state.user.referralCode;
+        let newAccountLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
         return (
             (this.state.redirect) ?
                 <Redirect to={newAccountLink} />
