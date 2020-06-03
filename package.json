@@ -7,12 +7,12 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "firebase": "^7.14.6",
     "re-base": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "react-step-progress-bar": "^1.0.3"
+    "react-step-progress-bar": "^1.0.3",
+    "react-sticky-footer": "0.1.0-rc3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,6 +38,7 @@
   "devDependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
+    "firebase": "^7.14.6",
     "react-router-dom": "^5.2.0"
   }
 }

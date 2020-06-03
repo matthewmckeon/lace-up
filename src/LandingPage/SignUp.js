@@ -13,7 +13,8 @@ export default class SignUp extends Component {
         super(props);
         this.state = {
             user: {
-                username: "",
+                firstName: "",
+                lastName: "",
                 email: "",
                 password: "",
                 referralCode: "", //unique code for each new user
@@ -57,7 +58,7 @@ export default class SignUp extends Component {
                 this.state.user.email, this.state.user.password
             )
             base.initializedApp.auth().currentUser.updateProfile({
-                displayName: this.state.user.username
+                displayName: this.state.user.firstName
             })
 
             this.props.toggleLoginState(true)
@@ -99,12 +100,13 @@ export default class SignUp extends Component {
     }
 
     render() {
-        let newAccountLink = '/account/' + this.state.user.username + "/" + this.state.user.referralCode;
+        let newAccountLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
         return (
             (this.state.redirect) ?
                 <Redirect to={newAccountLink} />
                 :
                 <div className="registerForm">
+                    <h1>Register</h1>
                     <Avatar>
                         <LockOutlinedIcon />
                     </Avatar>
@@ -113,13 +115,23 @@ export default class SignUp extends Component {
                 </Typography>
                     <form onSubmit={e => e.preventDefault()}>
                         <FormControl required>
-                            <InputLabel htmlFor="username">Username</InputLabel>
+                            <InputLabel htmlFor="firstName">First Name</InputLabel>
                             <Input
-                                id="username"
-                                name="username"
+                                id="firstName"
+                                name="firstName"
                                 autoComplete="off"
                                 autoFocus
-                                value={this.state.user.username || ""}
+                                value={this.state.user.firstName || ""}
+                                onChange={e => this.handleRegister(e)} />
+                        </FormControl>
+                        <FormControl required>
+                            <InputLabel htmlFor="lastName">Last Name</InputLabel>
+                            <Input
+                                id="lastName"
+                                name="lastName"
+                                autoComplete="off"
+                                autoFocus
+                                value={this.state.user.lastName || ""}
                                 onChange={e => this.handleRegister(e)} />
                         </FormControl>
                         <br />

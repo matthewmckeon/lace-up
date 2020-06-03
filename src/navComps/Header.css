@@ -4,15 +4,16 @@
     left: 0;
     width: 100%;
     background: #124559;
-    height: 35px;
+    height: 25px;
     padding: 25px;
-    text-align: center;
 }
 
 .header_logo a{
     color: white;
     text-decoration: none;
     font-size: 2.0em;
+    float: right;
+    padding: 0 100px;
 }
 
 .header_nav {
