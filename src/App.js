@@ -31,7 +31,6 @@ export default class App extends Component {
       score: 0,
     };
     this.setState({ users });
-
   }
 
   componentWillMount() {
