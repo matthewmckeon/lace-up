@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function AboutCard() {
+export default function ProgramsCard() {
   const classes = useStyles();
 
   return (
