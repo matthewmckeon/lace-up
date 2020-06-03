@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import LogInRoute from "./LandingPage/LogInRoute.js";
 import Login from "./LandingPage/Login.js";
 import SignUp from "./LandingPage/SignUp.js";
+import Logout from "./LandingPage/Logout.js";
 import Faq from "./FAQ/Faq.js";
 import About from "./About/About.js";
 import Account from "./Account/Account.js";
-import NavBar from "./navComps/navBar.js";
+import NavBar from "./navComps/NavBar.js";
 import HowItWorks from "./LandingPage/HowItWorks.js";
 import { base } from './config/Firebase';
 
@@ -15,6 +15,7 @@ export default class App extends Component {
     super(props)
     this.state = {
       users: {},
+      currentUserCode: "",
       isLoggedIn: false,
       firebaseInitialized: false,
     }
@@ -30,6 +31,7 @@ export default class App extends Component {
       score: 0,
     };
     this.setState({ users });
+
   }
 
   componentWillMount() {
@@ -54,11 +56,19 @@ export default class App extends Component {
     this.setState({ isLoggedIn: isLoggedIn })
   }
 
+  updateCurrentUser = (userCode) => {
+    this.setState({ currentUserCode: userCode })
+  }
+
   //https://learnwithparam.com/blog/dynamic-pages-in-react-router/
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar
+          isLoggedIn={this.state.isLoggedIn}
+          users={this.state.users}
+          currentUserCode={this.state.currentUserCode}
+        />
         <Router>
           <div className="App">
             <Switch>
@@ -67,13 +77,9 @@ export default class App extends Component {
               <Route path="/account/:username/:userId" component={Account} /> {/* unique to user */}
               <Route path="/login"
                 render={(props) =>
-                  // (<LogInRoute
-                  //   isLoggedIn={this.state.isLoggedIn} {...props}
-                  //   user={this.state.user}{...props}
-                  // />)
                   (<Login
-                    isLoggedIn={this.state.isLoggedIn} {...props}
-
+                    toggleLoginState={this.toggleLoginState} {...props}
+                    updateCurrentUser={this.updateCurrentUser}
                   />)
                 }
               />
@@ -82,7 +88,15 @@ export default class App extends Component {
                   <SignUp
                     toggleLoginState={this.toggleLoginState} {...props}
                     addUser={this.addUser}
+                    updateCurrentUser={this.updateCurrentUser}
                   />
+                }
+              />
+              <Route path="/log-out"
+                render={(props) =>
+                  (<Logout
+                    toggleLoginState={this.toggleLoginState} {...props}
+                  />)
                 }
               />
               <Route path="/" component={HowItWorks} /> {/* landing page before log in*/}
