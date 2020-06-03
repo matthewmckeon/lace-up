@@ -92,6 +92,7 @@ export default class Login extends Component {
                 <Redirect to={userLink} />
                 :
                 <div className="loginForm">
+                    <h1>Log In</h1>
                     <Avatar>
                         <LockOutlinedIcon />
                     </Avatar>
