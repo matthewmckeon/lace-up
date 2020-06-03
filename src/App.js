@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Login from "./LandingPage/Login.js";
 import SignUp from "./LandingPage/SignUp.js";
 import Logout from "./LandingPage/Logout.js";
@@ -7,18 +7,18 @@ import About from "./About/About.js";
 import Account from "./Account/Account.js";
 import NavBar from "./navComps/NavBar.js";
 import HowItWorks from "./LandingPage/HowItWorks.js";
-import { base } from './config/Firebase';
+import MainFooter from "./Footer/MainFooter";
+import { base } from "./config/Firebase";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 export default class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       users: {},
       currentUserCode: "",
       isLoggedIn: false,
       authListen: null,
-
     }
   }
 
@@ -33,7 +33,7 @@ export default class App extends Component {
       score: 0,
     };
     this.setState({ users });
-  }
+  };
 
   componentWillMount = () => {
     this.usersRef = base.syncState('users', {
@@ -46,8 +46,6 @@ export default class App extends Component {
   componentDidMount = () => {
     let authListener = base.initializedApp.auth().onAuthStateChanged(function (user) {
       if (user) {
-        console.log(user)
-        console.log("will mount")
         this.checkLogin()
       } else {
         console.log("need to log in")
@@ -70,12 +68,12 @@ export default class App extends Component {
   }
 
   toggleLoginState = (isLoggedIn) => {
-    this.setState({ isLoggedIn: isLoggedIn })
-  }
+    this.setState({ isLoggedIn: isLoggedIn });
+  };
 
   updateCurrentUser = (userCode) => {
-    this.setState({ currentUserCode: userCode })
-  }
+    this.setState({ currentUserCode: userCode });
+  };
 
   //https://learnwithparam.com/blog/dynamic-pages-in-react-router/
   render() {
@@ -119,14 +117,16 @@ export default class App extends Component {
                   />)
                 }
               />
-              <Route path="/register"
-                render={(props) =>
+              <Route
+                path="/register"
+                render={(props) => (
                   <SignUp
                     toggleLoginState={this.toggleLoginState} {...props}
                     addUser={this.addUser} {...props}
                     updateCurrentUser={this.updateCurrentUser} {...props}
+
                   />
-                }
+                )}
               />
               <Route path="/log-out"
                 render={(props) =>
@@ -146,8 +146,9 @@ export default class App extends Component {
 
             </Switch>
           </div>
-        </Router >
+        </Router>
+        <MainFooter />
       </div>
-    )
+    );
   }
 }

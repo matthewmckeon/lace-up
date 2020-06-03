@@ -1,0 +1,12 @@
+.container {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 2em;
+  background-color: white;
+}
+
+.card {
+  padding: 16px 16px;
+}

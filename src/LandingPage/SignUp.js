@@ -111,6 +111,7 @@ export default class SignUp extends Component {
                 <Redirect to={newAccountLink} />
                 :
                 <div className="registerForm">
+                    <h1>Register</h1>
                     <Avatar>
                         <LockOutlinedIcon />
                     </Avatar>
