@@ -9,7 +9,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%'
+    width: '40%',
+    paddingLeft: '55%'
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -22,7 +23,6 @@ export default function SimpleExpansionPanel() {
 
   return (
     <div className={classes.root}>
-      <h1>LaceUp FAQs</h1>
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -38,6 +38,7 @@ export default function SimpleExpansionPanel() {
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
+      <div className='space' />
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -53,6 +54,7 @@ export default function SimpleExpansionPanel() {
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
+      <div className='space' />
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -68,6 +70,7 @@ export default function SimpleExpansionPanel() {
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
+      <div className='space' />
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -83,6 +86,7 @@ export default function SimpleExpansionPanel() {
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
+      <div className='space' />
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -98,6 +102,7 @@ export default function SimpleExpansionPanel() {
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
+      <div className='space' />
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -113,6 +118,7 @@ export default function SimpleExpansionPanel() {
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
+      <div className='space' />
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -128,6 +134,7 @@ export default function SimpleExpansionPanel() {
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
+      <div className='space' />
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -143,6 +150,7 @@ export default function SimpleExpansionPanel() {
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
+      <div className='space' />
       <ExpansionPanel>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -158,6 +166,7 @@ export default function SimpleExpansionPanel() {
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
+      <div className='spaceLast' />
     </div>
   );
 }

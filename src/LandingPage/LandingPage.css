@@ -1,3 +1,7 @@
+.body {
+  background-color: silver;
+}
+
 .title {
   text-align: center;
   color: #124559;
@@ -33,7 +37,6 @@
   height: auto;
   padding: 20px 20px;
   font-size: 1.5em;
-  margin-top: 5%;
   cursor: pointer;
   border: none;
 }
