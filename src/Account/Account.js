@@ -38,8 +38,8 @@ export default class Account extends Component {
               Welcome {this.props.match.params.username}!
             </h3>
           </div>
-          <Progress progress={this.state.progress} />
-          <ProgressStats progress={this.state.progress} />
+          <Progress progress={90} />
+          <ProgressStats progress={90} />
           <div className="refer-button">
             <FriendButton code={this.props.match.params.userId} />
           </div>
