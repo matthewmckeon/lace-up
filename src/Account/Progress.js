@@ -8,14 +8,25 @@ export default class Progress extends Component {
     return (
       <div>
         <h2 className="referrals">
-          You've gotten {this.props.progress} Referrals
+          {this.props.progress === 1
+            ? "You've gotten 1 referral!"
+            : "You've gotten " + this.props.progress + " referrals!"}
         </h2>
         <div className="progress">
           <ProgressBar
             percent={this.props.progress}
             filledBackground="linear-gradient(to right, #FFB20F, #f1d302)"
-            stepPositions={[10, 25, 50, 100]}
+            stepPositions={[0, 10, 25, 50, 100]}
           >
+            <Step>
+              {({ accomplished }) => (
+                <div
+                  className={`indexedStep${accomplished ? "accomplished" : ""}`}
+                >
+                  0
+                </div>
+              )}
+            </Step>
             <Step>
               {({ accomplished }) => (
                 <div

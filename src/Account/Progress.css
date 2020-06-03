@@ -29,3 +29,11 @@
   width: 100%;
   color: white;
 }
+
+.progress {
+  width: 80%;
+  margin: auto;
+  margin-top: 5em;
+  margin-bottom: 5em;
+  background-color: white;
+}
