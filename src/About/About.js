@@ -4,9 +4,7 @@ import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-export default class About extends Component {
-   
-  const useStyles = makeStyles({
+const useStyles = makeStyles({
     gridContainer: {
         paddingLeft: '60px',
         paddingRight: '60px',
@@ -20,13 +18,13 @@ export default function About() {
     const classes = useStyles();
     const classes2 = useStyles();
 
-        return (
-            <div className='Grid'>
-                <Grid container spacing= {4} className={classes.gridContainer} >
-                    <Grid item xs={12} sm={12} md={12}>
-                        <AboutCard />
-                    </Grid>
+    return (
+        <div className='Grid'>
+            <Grid container spacing={4} className={classes.gridContainer} >
+                <Grid item xs={12} sm={12} md={12}>
+                    <AboutCard />
                 </Grid>
-            </div>
-        );
+            </Grid>
+        </div>
+    );
 }
