@@ -32,6 +32,7 @@ export default class Account extends Component {
     return (
       <div className="account">
         <div className="left">
+
           <div className="welcome">
             <h3 style={{ textTransform: "capitalize" }}>
               Welcome {this.props.match.params.username}!
