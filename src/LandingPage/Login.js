@@ -134,7 +134,7 @@ export default class Login extends Component {
                     >Register
                     </Button> */}
                         <Button
-                            style={{ marginTop: 15 }}
+                            style={{ marginTop: 15, marginBottom: 5 }}
                             type="submit"
                             variant="contained"
                             color="primary"
