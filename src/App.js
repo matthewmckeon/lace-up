@@ -5,7 +5,7 @@ import Logout from "./LandingPage/Logout.js";
 import Faq from "./FAQ/Faq.js";
 import About from "./About/About.js";
 import Account from "./Account/Account.js";
-import NavBar from "./navComps/navBar.js";
+import NavBar from "./navComps/NavBar.js";
 import HowItWorks from "./LandingPage/HowItWorks.js";
 import { base } from './config/Firebase';
 
