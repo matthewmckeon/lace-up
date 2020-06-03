@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+//gets progress
+
 export default class ProgressStats extends Component {
   render() {
     const { progress } = this.props;
@@ -10,10 +12,10 @@ export default class ProgressStats extends Component {
           {progress <= 10
             ? "An invitation to our exclusive Facebook group!"
             : progress <= 25
-            ? "A free LaceUp sticker pack!"
-            : progress <= 50
-            ? "A limited edition LaceUp shirt!"
-            : "Your choice of shoes from our newest collection!"}
+              ? "A free LaceUp sticker pack!"
+              : progress <= 50
+                ? "A limited edition LaceUp shirt!"
+                : "Your choice of shoes from our newest collection!"}
         </div>
       </div>
     );
