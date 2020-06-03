@@ -114,13 +114,13 @@ export default class SignUp extends Component {
                 </Typography>
                     <form onSubmit={e => e.preventDefault()}>
                         <FormControl required>
-                            <InputLabel htmlFor="username">Username</InputLabel>
+                            <InputLabel htmlFor="firstName">First Name</InputLabel>
                             <Input
-                                id="username"
-                                name="username"
+                                id="firstName"
+                                name="firstName"
                                 autoComplete="off"
                                 autoFocus
-                                value={this.state.user.username || ""}
+                                value={this.state.user.firstName || ""}
                                 onChange={e => this.handleRegister(e)} />
                         </FormControl>
                         <br />
