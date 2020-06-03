@@ -3,7 +3,7 @@ body {
 }
 
 .title {
-    text-align: center;
+    text-align: left;
     color: #124559;
     font-size: 2.5em;
     font-weight: bold;
@@ -11,7 +11,7 @@ body {
 }
 
 .title2 {
-    text-align: center;
+    text-align: left;
     color: #124559;
     font-size: 2.5em;
     font-weight: bold;
@@ -30,13 +30,13 @@ body {
 }
 
 .login,.signup {
-    background-color: yellow;
+    background-color: #d34944;
     border-radius: 15px;
     width: 15%;
     height: auto;
     padding: 20px 20px;
-    font-size: 1.5em;
-    margin-top: 5%;
+    font-size: 1.75em;
     cursor: pointer;
     border: none;
+    color: white
 }
