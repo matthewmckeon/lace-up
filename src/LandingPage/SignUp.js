@@ -123,6 +123,16 @@ export default class SignUp extends Component {
                                 value={this.state.user.firstName || ""}
                                 onChange={e => this.handleRegister(e)} />
                         </FormControl>
+                        <FormControl required>
+                            <InputLabel htmlFor="lastName">Last Name</InputLabel>
+                            <Input
+                                id="lastName"
+                                name="lastName"
+                                autoComplete="off"
+                                autoFocus
+                                value={this.state.user.lastName || ""}
+                                onChange={e => this.handleRegister(e)} />
+                        </FormControl>
                         <br />
                         <FormControl required>
                             <InputLabel htmlFor="email">Email Address</InputLabel>
