@@ -43,30 +43,30 @@ export default class App extends Component {
   };
 
   componentDidMount = () => {
-    let authListener = base.initializedApp
-      .auth()
-      .onAuthStateChanged(function (user) {
-        if (user) {
-          this.checkLogin();
-        } else {
-          console.log("need to log in");
-        }
-      });
-    this.setState({ authListen: authListener });
-  };
+    let authListener = base.initializedApp.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        //this.checkLogin()
+        console.log("still logged in")
+      } else {
+        console.log("need to log in")
+      }
+    });
+    this.setState({ authListen: authListener })
+  }
 
   componentWillUnmount() {
     base.removeBinding(this.usersRef);
     this.state.authListen();
   }
 
-  checkLogin = () => {
-    this.setState((prevState) => {
-      return {
-        currentUserCode: prevState.currentUserCode,
-      };
-    });
-  };
+  // checkLogin = () => {
+  //   this.setState(prevState => {
+  //     return ({
+  //       currentUserCode: prevState.currentUserCode
+  //     })
+  //   })
+  // }
+
 
   toggleLoginState = (isLoggedIn) => {
     this.setState({ isLoggedIn: isLoggedIn });

@@ -200,8 +200,10 @@ export default class SignUp extends Component {
                                         autoComplete="off"
                                         value={this.state.user.referralCodeGiven}
                                         onChange={e => this.handleRegister(e)}
+                                        style={{ marginBottom: 5 }}
                                     />
                                 </FormControl>
+                                <br />
                             </div>
                             :
                             <div></div>
