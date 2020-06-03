@@ -4,9 +4,13 @@ import SideBar from './SideBar.js';
 import Backdrop from './Backdrop.js'
 
 export default class NavBar extends Component {
-    state = {
-        sideBarOpen: false
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            sideBarOpen: false
+        };
+
+    }
 
     sideBarToggleClickHandler = () => {
         this.setState((prevState) => {
@@ -23,7 +27,12 @@ export default class NavBar extends Component {
         let backdrop;
 
         if (this.state.sideBarOpen) {
-            sideBar = <SideBar />
+            console.log(this.props)
+            sideBar = <SideBar
+                isLoggedIn={this.props.isLoggedIn}
+                users={this.props.users}
+                currentUserCode={this.props.currentUserCode}
+            />
             backdrop = <Backdrop click={this.backdropClickHandler} />
         }
         return (
