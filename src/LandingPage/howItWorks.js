@@ -20,27 +20,13 @@ export default function HowItWorks() {
 
         return (
             <div className='Grid'>
-                <div className='title'>How it works</div>
                 <Grid container spacing= {4} className={classes.gridContainer} >
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Card />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Card />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
+                    <Grid item xs={12} sm={12} md={12}>
                         <Card />
                     </Grid>
                 </Grid>
-                    <div className='title2'>Rewards</div>
                 <Grid container spacing={4} className={classes2.gridContainer}>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Card />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Card />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
+                    <Grid item xs={12} sm={12} md={12}>
                         <Card />
                     </Grid>
                 </Grid>

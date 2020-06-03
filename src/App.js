@@ -7,6 +7,7 @@ import About from "./About/About.js";
 import Account from "./Account/Account.js";
 import NavBar from "./navComps/NavBar.js";
 import HowItWorks from "./LandingPage/HowItWorks.js";
+import MainFooter from './Footer/MainFooter'
 import { base } from './config/Firebase';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -103,6 +104,7 @@ export default class App extends Component {
             </Switch>
           </div>
         </Router >
+        <MainFooter />
       </div>
     )
   }
