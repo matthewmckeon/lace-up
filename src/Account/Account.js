@@ -26,7 +26,7 @@ export default class Account extends Component {
   render() {
     console.log(this.props);
     return (
-      <div>
+      <div className="account">
         <div className="left">
           <div className="welcome">
             <h3 style={{ textTransform: "capitalize" }}>
