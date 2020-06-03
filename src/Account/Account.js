@@ -18,11 +18,11 @@ export default class Account extends Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div>
         <div>
-          <h2>Welcome {this.props.match.params.username}!</h2>
+          <h2>Welcome {this.props.match.params.firstName}!</h2>
         </div>
         <Progress progress={this.state.progress} />
         <ProgressStats progress={this.state.progress} />

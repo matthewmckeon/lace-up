@@ -3,6 +3,9 @@ import Header from './Header.js';
 import SideBar from './SideBar.js';
 import Backdrop from './Backdrop.js'
 
+import { base } from '../config/Firebase';
+import firebase from 'firebase';
+
 export default class NavBar extends Component {
     constructor(props) {
         super(props);
@@ -25,9 +28,9 @@ export default class NavBar extends Component {
     render() {
         let sideBar;
         let backdrop;
-
+        console.log(base.initializedApp.auth().currentUser)
+        console.log(this.props.isLoggedIn)
         if (this.state.sideBarOpen) {
-            console.log(this.props)
             sideBar = <SideBar
                 isLoggedIn={this.props.isLoggedIn}
                 users={this.props.users}

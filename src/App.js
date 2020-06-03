@@ -25,7 +25,8 @@ export default class App extends Component {
   addUser = (user) => {
     const users = { ...this.state.users };
     users[user.referralCode] = {
-      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
       referralCode: user.referralCode,
       score: 0,
@@ -38,6 +39,9 @@ export default class App extends Component {
       context: this,
       state: "users"
     })
+
+    console.log('will')
+    this.checkLogin()
   }
 
   componentDidMount() {
@@ -45,6 +49,26 @@ export default class App extends Component {
       base.initializedApp.auth().onAuthStateChanged(resolve)
     })
     this.setState({ firebaseInitialized: isInitialized })
+
+    this.checkLogin()
+    console.log("did mount")
+
+
+  }
+
+  checkLogin = () => {
+    console.log(base.initializedApp.auth().currentUser)
+    if (base.initializedApp.auth().currentUser) {
+      this.setState({ isLoggedIn: true })
+      this.setState(prevState => {
+        return ({
+          currentUserCode: prevState.currentUserCode
+        })
+      })
+    } else {
+      console.log('failed')
+    }
+
   }
 
   componentWillUnmount() {
@@ -61,19 +85,21 @@ export default class App extends Component {
 
   //https://learnwithparam.com/blog/dynamic-pages-in-react-router/
   render() {
+
     return (
       <div>
         <NavBar
           isLoggedIn={this.state.isLoggedIn}
           users={this.state.users}
           currentUserCode={this.state.currentUserCode}
+          firebaseInitialized={this.state.firebaseInitialized}
         />
         <Router>
           <div className="App">
             <Switch>
               <Route path="/faq" component={Faq} />
               <Route path="/about" component={About} />
-              <Route path="/account/:username/:userId" component={Account} /> {/* unique to user */}
+              <Route path="/account/:firstName/:userId" component={Account} /> {/* unique to user */}
               <Route path="/login"
                 render={(props) =>
                   (<Login
@@ -95,6 +121,7 @@ export default class App extends Component {
                 render={(props) =>
                   (<Logout
                     toggleLoginState={this.toggleLoginState} {...props}
+                    currentUserCode={this.state.currentUserCode}
                   />)
                 }
               />

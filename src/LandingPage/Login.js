@@ -15,7 +15,8 @@ export default class Login extends Component {
         super(props);
         this.state = {
             user: {
-                username: "",
+                firstName: "",
+                lastName: "",
                 email: "",
                 password: "",
                 referralCode: "",
@@ -66,7 +67,7 @@ export default class Login extends Component {
                     this.setState({
                         user: {
                             ...this.state.user,
-                            username: snap.val().username,
+                            firstName: snap.val().firstName,
                             referralCode: snap.val().referralCode
                         }
                     })
@@ -75,7 +76,7 @@ export default class Login extends Component {
             this.props.updateCurrentUser(userCode) //update current user to app
 
             //https://scotch.io/courses/using-react-router-4/authentication-with-redirect
-            let userLink = '/account/' + this.state.user.username + "/" + this.state.user.referralCode;
+            let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
             this.props.history.push(userLink);
 
         } catch (error) {
@@ -86,7 +87,8 @@ export default class Login extends Component {
     }
 
     render() {
-        let userLink = '/account/' + this.state.user.username + "/" + this.state.user.referralCode;
+        //        console.log(base.initializedApp.auth().currentUser)
+        let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
         return (
             (this.state.redirect) ?
                 <Redirect to={userLink} />
@@ -139,7 +141,6 @@ export default class Login extends Component {
                     </Button>
                     </form>
                 </div>
-
         )
     }
 }
