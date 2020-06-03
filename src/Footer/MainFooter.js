@@ -9,13 +9,13 @@ export default class MainFooter extends Component {
     // bottomThreshold={50}
     normalStyles={{
     backgroundColor: "#124559",
-    padding: "2rem",
+    padding: "1.5rem",
     color: 'white',
     textAlign: 'center'
     }}
     stickyStyles={{
     backgroundColor: "#124559",
-    padding: "2rem",
+    padding: "1.5rem",
     color: 'white',
     textAlign: 'center'
     }}

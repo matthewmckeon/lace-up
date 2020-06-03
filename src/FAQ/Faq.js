@@ -31,6 +31,7 @@ export default class Faq extends Component {
                 }
                 )}
                 <a href="#top">Back to top</a>
+
             </div>
         )
 

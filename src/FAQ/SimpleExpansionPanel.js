@@ -9,7 +9,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%'
+    width: '40%',
+    paddingLeft: '55%'
   },
   heading: {
     fontSize: theme.typography.pxToRem(22),
@@ -48,6 +49,7 @@ export default function SimpleExpansionPanel(props) {
           }
         </ExpansionPanelDetails>
       </ExpansionPanel>
+      <div className='spaceLast' />
     </div>
   );
 }

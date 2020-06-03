@@ -1,9 +1,9 @@
 import React from "react";
 import "./LandingPage.css";
 import Card from "./Card";
+import Card1 from "./Card1";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Footer from "./Footer";
 
 const useStyles = makeStyles({
   gridContainer: {
@@ -22,7 +22,7 @@ export default function HowItWorks() {
     <div className="Grid">
       <Grid container spacing={4} className={classes.gridContainer}>
         <Grid item xs={12} sm={12} md={12}>
-          <Card />
+          <Card1 />
         </Grid>
       </Grid>
       <Grid container spacing={4} className={classes2.gridContainer}>
@@ -30,7 +30,6 @@ export default function HowItWorks() {
           <Card />
         </Grid>
       </Grid>
-      <Footer />
     </div>
   );
 }

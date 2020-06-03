@@ -6,6 +6,7 @@
     background: #124559;
     height: 25px;
     padding: 6vh;
+    z-index: 1;
 }
 
 .header_logo a{

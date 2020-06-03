@@ -19,7 +19,7 @@ export default class App extends Component {
       currentUserCode: "",
       isLoggedIn: false,
       authListen: null,
-    }
+    };
   }
 
   //https://coderjourney.com/tutorials/how-to-integrate-react-with-firebase/
@@ -36,12 +36,11 @@ export default class App extends Component {
   };
 
   componentWillMount = () => {
-    this.usersRef = base.syncState('users', {
+    this.usersRef = base.syncState("users", {
       context: this,
-      state: "users"
-    })
-
-  }
+      state: "users",
+    });
+  };
 
   componentDidMount = () => {
     let authListener = base.initializedApp.auth().onAuthStateChanged(function (user) {
@@ -56,8 +55,8 @@ export default class App extends Component {
   }
 
   componentWillUnmount() {
-    base.removeBinding(this.usersRef)
-    this.state.authListen()
+    base.removeBinding(this.usersRef);
+    this.state.authListen();
   }
 
   // checkLogin = () => {
@@ -67,6 +66,7 @@ export default class App extends Component {
   //     })
   //   })
   // }
+
 
   toggleLoginState = (isLoggedIn) => {
     this.setState({ isLoggedIn: isLoggedIn });
@@ -78,7 +78,6 @@ export default class App extends Component {
 
   //https://learnwithparam.com/blog/dynamic-pages-in-react-router/
   render() {
-
     return (
       <div>
         <NavBar
@@ -89,62 +88,50 @@ export default class App extends Component {
         <Router>
           <div className="App">
             <Switch>
-              <Route path="/faq"
-                render={(props) =>
-                  (<Faq
-                    {...props}
-                  />)
-                }
-              />
-              <Route path="/about"
-                render={(props) =>
-                  (<About
-                    {...props}
-                  />)
-                }
-              />
-              <Route path="/account/:firstName/:userId"
+              <Route path="/faq" render={(props) => <Faq {...props} />} />
+              <Route path="/about" render={(props) => <About {...props} />} />
+              <Route
+                path="/account/:firstName/:userId"
+                render={(props) => <Account {...props} />}
+              />{" "}
+              {/* unique to user */}
+              <Route
+                path="/login"
                 render={(props) => (
-                  <Account
+                  <Login
+                    toggleLoginState={this.toggleLoginState}
+                    {...props}
+                    updateCurrentUser={this.updateCurrentUser}
                     {...props}
                   />
                 )}
-              /> {/* unique to user */}
-              <Route path="/login"
-                render={(props) =>
-                  (<Login
-                    toggleLoginState={this.toggleLoginState} {...props}
-                    updateCurrentUser={this.updateCurrentUser} {...props}
-                  />)
-                }
               />
               <Route
                 path="/register"
                 render={(props) => (
                   <SignUp
-                    toggleLoginState={this.toggleLoginState} {...props}
-                    addUser={this.addUser} {...props}
-                    updateCurrentUser={this.updateCurrentUser} {...props}
-
-                  />
-                )}
-              />
-              <Route path="/log-out"
-                render={(props) =>
-                  (<Logout
-                    toggleLoginState={this.toggleLoginState} {...props}
-                    currentUserCode={this.state.currentUserCode}{...props}
-                  />)
-                }
-              />
-              <Route path="/"
-                render={(props) => (
-                  <HowItWorks
+                    toggleLoginState={this.toggleLoginState}
+                    {...props}
+                    addUser={this.addUser}
+                    {...props}
+                    updateCurrentUser={this.updateCurrentUser}
                     {...props}
                   />
                 )}
-              /> {/* landing page before log in*/}
-
+              />
+              <Route
+                path="/log-out"
+                render={(props) => (
+                  <Logout
+                    toggleLoginState={this.toggleLoginState}
+                    {...props}
+                    currentUserCode={this.state.currentUserCode}
+                    {...props}
+                  />
+                )}
+              />
+              <Route path="/" render={(props) => <HowItWorks {...props} />} />{" "}
+              {/* landing page before log in*/}
             </Switch>
           </div>
         </Router>

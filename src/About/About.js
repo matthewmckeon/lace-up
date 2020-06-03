@@ -1,30 +1,27 @@
 import React, { Component } from "react";
-import AboutCard from './AboutCard';
-import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-
-
-const useStyles = makeStyles({
-    gridContainer: {
-        paddingLeft: '60px',
-        paddingRight: '60px',
-        paddingTop: '20px',
-        paddingBottom: '50px'
-
-    }
-});
+import AboutCard from "./AboutCard";
+import ProgramsCard from "./ProgramsCard";
+import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import "./About.css";
 
 export default function About() {
-    const classes = useStyles();
-    const classes2 = useStyles();
-
-    return (
-        <div className='Grid'>
-            <Grid container spacing={4} className={classes.gridContainer} >
-                <Grid item xs={12} sm={12} md={12}>
-                    <AboutCard />
-                </Grid>
-            </Grid>
+  return (
+    <div>
+      <div className="left">
+        <div className="mission">
+          <AboutCard />
         </div>
-    );
+        <div className="programs">
+          <ProgramsCard />
+        </div>
+      </div>
+      <div className="image-container">
+        <img
+          className="image"
+          src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80"
+        />
+      </div>
+    </div>
+  );
 }
