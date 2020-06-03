@@ -67,6 +67,8 @@ export default class SignUp extends Component {
             //then, generate a new code for every new user
             let referralCode = this.createReferralCode(emailKey)
 
+            this.props.updateCurrentUser(referralCode) //update current user to app
+
             this.setState({
                 user: {
                     ...this.state.user,
