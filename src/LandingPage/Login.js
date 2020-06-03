@@ -15,7 +15,8 @@ export default class Login extends Component {
         super(props);
         this.state = {
             user: {
-                username: "",
+                firstName: "",
+                lastName: "",
                 email: "",
                 password: "",
                 referralCode: "",
@@ -49,7 +50,8 @@ export default class Login extends Component {
         return referralCode
     }
 
-    loginUser = async () => {
+    loginUser = async (e) => {
+        e.preventDefault()
         try {
             await base.initializedApp.auth().signInWithEmailAndPassword(
                 this.state.user.email, this.state.user.password
@@ -66,7 +68,7 @@ export default class Login extends Component {
                     this.setState({
                         user: {
                             ...this.state.user,
-                            username: snap.val().username,
+                            firstName: snap.val().firstName,
                             referralCode: snap.val().referralCode
                         }
                     })
@@ -75,7 +77,7 @@ export default class Login extends Component {
             this.props.updateCurrentUser(userCode) //update current user to app
 
             //https://scotch.io/courses/using-react-router-4/authentication-with-redirect
-            let userLink = '/account/' + this.state.user.username + "/" + this.state.user.referralCode;
+            let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
             this.props.history.push(userLink);
 
         } catch (error) {
@@ -86,7 +88,8 @@ export default class Login extends Component {
     }
 
     render() {
-        let userLink = '/account/' + this.state.user.username + "/" + this.state.user.referralCode;
+        // console.log(this.props)
+        let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
         return (
             (this.state.redirect) ?
                 <Redirect to={userLink} />
@@ -135,12 +138,11 @@ export default class Login extends Component {
                             type="submit"
                             variant="contained"
                             color="primary"
-                            onClick={this.loginUser}
+                            onClick={(e) => this.loginUser(e)}
                         > Sign In
                     </Button>
                     </form>
                 </div>
-
         )
     }
 }

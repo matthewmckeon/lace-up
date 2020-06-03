@@ -3,12 +3,16 @@ import AboutCard from './AboutCard';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+
+export default class About extends Component {
+   
+  const useStyles = makeStyles({
     gridContainer: {
         paddingLeft: '60px',
         paddingRight: '60px',
         paddingTop: '20px',
         paddingBottom: '50px'
+
     }
 });
 

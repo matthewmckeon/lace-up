@@ -3,6 +3,7 @@ import SimpleExpansionPanel from './SimpleExpansionPanel.js'
 
 export default class Faq extends Component {
     render() {
+        console.log(this.props)
         return (
             <SimpleExpansionPanel />
         )

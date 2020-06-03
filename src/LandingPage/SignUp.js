@@ -5,7 +5,7 @@ import {
     FormControlLabel, Checkbox
 } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import { BrowserRouter as Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Redirect } from "react-router-dom";
 import { ALPHA } from "./Alphabet.js";
 
 export default class SignUp extends Component {
@@ -48,17 +48,18 @@ export default class SignUp extends Component {
             let num = ALPHA[char].toString();
             referralCode += num
         })
-        console.log(referralCode)
+        //console.log(referralCode)
         return referralCode
     }
 
-    registerUser = async () => {
+    registerUser = async (e) => {
+        e.preventDefault();
         try {
             await base.initializedApp.auth().createUserWithEmailAndPassword(
                 this.state.user.email, this.state.user.password
             )
             base.initializedApp.auth().currentUser.updateProfile({
-                displayName: this.state.user.firstName
+                displayName: this.state.user.firstName + " " + this.state.user.lastName
             })
 
             this.props.toggleLoginState(true)
@@ -82,6 +83,9 @@ export default class SignUp extends Component {
             //and redirect to account page
             this.setState({ redirect: true })
 
+            let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
+            this.props.history.push(userLink);
+
         } catch (error) {
             this.props.toggleLoginState(false)
             this.setState({ redirect: false })
@@ -100,6 +104,7 @@ export default class SignUp extends Component {
     }
 
     render() {
+        // console.log(this.props)
         let newAccountLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
         return (
             (this.state.redirect) ?
@@ -124,13 +129,13 @@ export default class SignUp extends Component {
                                 value={this.state.user.firstName || ""}
                                 onChange={e => this.handleRegister(e)} />
                         </FormControl>
+                        <br />
                         <FormControl required>
                             <InputLabel htmlFor="lastName">Last Name</InputLabel>
                             <Input
                                 id="lastName"
                                 name="lastName"
                                 autoComplete="off"
-                                autoFocus
                                 value={this.state.user.lastName || ""}
                                 onChange={e => this.handleRegister(e)} />
                         </FormControl>
@@ -162,7 +167,7 @@ export default class SignUp extends Component {
                             type="submit"
                             variant="contained"
                             color="secondary"
-                            onClick={this.registerUser}
+                            onClick={e => this.registerUser(e)}
                         > Register
                     </Button>
                         <br />

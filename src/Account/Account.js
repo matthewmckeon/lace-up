@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import Progress from "./Progress.js";
 import ProgressStats from "./ProgressStats.js";
+
+import { base } from '../config/Firebase';
+import firebase from 'firebase';
+
 import FriendButton from "./FriendButton.js";
 import Milestones from "./Milestones.js";
 import Button from "@material-ui/core/Button";
 import "./Account.css";
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
+
 
 export default class Account extends Component {
   constructor(props) {
@@ -24,7 +29,6 @@ export default class Account extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="account">
         <div className="left">
