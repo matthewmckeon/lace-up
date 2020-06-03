@@ -9,7 +9,7 @@ import NavBar from "./navComps/navBar.js";
 import HowItWorks from "./LandingPage/HowItWorks.js";
 import { base } from './config/Firebase';
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 export default class App extends Component {
   constructor(props) {
     super(props)
@@ -20,10 +20,14 @@ export default class App extends Component {
     }
   }
 
-  addUser = () => {
-    const users = { ...this.state.user };
-    users[0] = {
-      name: "John Smith"
+  //https://coderjourney.com/tutorials/how-to-integrate-react-with-firebase/
+  addUser = (user) => {
+    const users = { ...this.state.users };
+    users[user.referralCode] = {
+      username: user.username,
+      email: user.email,
+      referralCode: user.referralCode,
+      score: 0,
     };
     this.setState({ users });
   }
@@ -35,22 +39,22 @@ export default class App extends Component {
     })
   }
 
-  componentWillUnmount() {
-    base.removeBinding(this.usersRef)
-  }
-
   componentDidMount() {
     let isInitialized = new Promise(resolve => {
       base.initializedApp.auth().onAuthStateChanged(resolve)
     })
     this.setState({ firebaseInitialized: isInitialized })
+  }
 
+  componentWillUnmount() {
+    base.removeBinding(this.usersRef)
   }
 
   toggleLoginState = (isLoggedIn) => {
     this.setState({ isLoggedIn: isLoggedIn })
   }
 
+  //https://learnwithparam.com/blog/dynamic-pages-in-react-router/
   render() {
     return (
       <div>
@@ -60,21 +64,24 @@ export default class App extends Component {
             <Switch>
               <Route path="/faq" component={Faq} />
               <Route path="/about" component={About} />
-              <Route path="/account" component={Account} /> {/* unique to user */}
+              <Route path="/account/:username/:userId" component={Account} /> {/* unique to user */}
               <Route path="/login"
                 render={(props) =>
-                  // <LogInRoute
+                  // (<LogInRoute
                   //   isLoggedIn={this.state.isLoggedIn} {...props}
-                  // />
-                  <Login
+                  //   user={this.state.user}{...props}
+                  // />)
+                  (<Login
                     isLoggedIn={this.state.isLoggedIn} {...props}
-                  />
+
+                  />)
                 }
               />
               <Route path="/register"
                 render={(props) =>
                   <SignUp
                     toggleLoginState={this.toggleLoginState} {...props}
+                    addUser={this.addUser}
                   />
                 }
               />

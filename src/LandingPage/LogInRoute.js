@@ -8,11 +8,6 @@ const LogInRoute = ({ component: ComponentToRender, ...rest }) => {
         <Route {...rest}
             render={(props) =>
                 console.log(props)
-                    (props.isLoggedIn) ?
-                    (<Login {...props} />)
-                    :
-                    (<Redirect to={{ pathname: "/login", state: { from: props.location } }} />)
-
             }
         />
     )
