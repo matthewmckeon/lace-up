@@ -1,25 +1,31 @@
 {
   "files": {
-    "main.css": "/lace-up/static/css/main.8eb8d932.chunk.css",
-    "main.js": "/lace-up/static/js/main.7ed9e51b.chunk.js",
-    "main.js.map": "/lace-up/static/js/main.7ed9e51b.chunk.js.map",
+    "main.css": "/lace-up/static/css/main.dc1dec02.chunk.css",
+    "main.js": "/lace-up/static/js/main.d5615eaf.chunk.js",
+    "main.js.map": "/lace-up/static/js/main.d5615eaf.chunk.js.map",
     "runtime-main.js": "/lace-up/static/js/runtime-main.19010777.js",
     "runtime-main.js.map": "/lace-up/static/js/runtime-main.19010777.js.map",
     "static/css/2.52f2db83.chunk.css": "/lace-up/static/css/2.52f2db83.chunk.css",
-    "static/js/2.be9898a7.chunk.js": "/lace-up/static/js/2.be9898a7.chunk.js",
-    "static/js/2.be9898a7.chunk.js.map": "/lace-up/static/js/2.be9898a7.chunk.js.map",
+    "static/js/2.4e42219a.chunk.js": "/lace-up/static/js/2.4e42219a.chunk.js",
+    "static/js/2.4e42219a.chunk.js.map": "/lace-up/static/js/2.4e42219a.chunk.js.map",
     "index.html": "/lace-up/index.html",
-    "precache-manifest.bb86182ca4d37549be15f130d17e0fb4.js": "/lace-up/precache-manifest.bb86182ca4d37549be15f130d17e0fb4.js",
+    "precache-manifest.4688137f1e03e15360ea1e4cce3cfa65.js": "/lace-up/precache-manifest.4688137f1e03e15360ea1e4cce3cfa65.js",
     "service-worker.js": "/lace-up/service-worker.js",
     "static/css/2.52f2db83.chunk.css.map": "/lace-up/static/css/2.52f2db83.chunk.css.map",
-    "static/css/main.8eb8d932.chunk.css.map": "/lace-up/static/css/main.8eb8d932.chunk.css.map",
-    "static/js/2.be9898a7.chunk.js.LICENSE.txt": "/lace-up/static/js/2.be9898a7.chunk.js.LICENSE.txt"
+    "static/css/main.dc1dec02.chunk.css.map": "/lace-up/static/css/main.dc1dec02.chunk.css.map",
+    "static/js/2.4e42219a.chunk.js.LICENSE.txt": "/lace-up/static/js/2.4e42219a.chunk.js.LICENSE.txt",
+    "static/media/allbirds.jpg": "/lace-up/static/media/allbirds.babafa34.jpg",
+    "static/media/decal.png": "/lace-up/static/media/decal.6205ac9b.png",
+    "static/media/kids.png": "/lace-up/static/media/kids.0172f52a.png",
+    "static/media/recycle.jpg": "/lace-up/static/media/recycle.e0bf9942.jpg",
+    "static/media/repair.jpg": "/lace-up/static/media/repair.a4b6cad0.jpg",
+    "static/media/shirt.svg": "/lace-up/static/media/shirt.9e1b9dfb.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.19010777.js",
     "static/css/2.52f2db83.chunk.css",
-    "static/js/2.be9898a7.chunk.js",
-    "static/css/main.8eb8d932.chunk.css",
-    "static/js/main.7ed9e51b.chunk.js"
+    "static/js/2.4e42219a.chunk.js",
+    "static/css/main.dc1dec02.chunk.css",
+    "static/js/main.d5615eaf.chunk.js"
   ]
 }
