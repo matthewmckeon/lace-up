@@ -26,11 +26,10 @@ export default class SignUp extends Component {
     }
 
     handleRegister = (event) => {
-
         this.setState({
             user: {
                 ...this.state.user, //https://github.com/reactstrap/reactstrap/issues/522
-                [event.target.name]: event.target.value.trim()
+                [event.target.name]: event.target.value
             }
         })
     }
@@ -49,7 +48,7 @@ export default class SignUp extends Component {
             )
 
             base.initializedApp.auth().currentUser.updateProfile({
-                displayName: this.state.user.firstName // + " " + this.state.user.lastName,
+                displayName: this.state.user.firstName + " " + this.state.user.lastName,
             })
 
             this.setState({
@@ -84,10 +83,10 @@ export default class SignUp extends Component {
                     hasCode: !this.state.user.hasCode
                 }
             })
+        console.log(this.state.user.hasCode)
     }
 
     render() {
-        // console.log(this.props)
         let newAccountLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
         return (
             <div className="formTot">
@@ -152,13 +151,6 @@ export default class SignUp extends Component {
                             > Register
                     </Button>
                             <br />
-                            {/* <Button
-                        style={{ marginTop: 5 }}
-                        variant="contained"
-                        color="primary"
-                        onClick={this.props.toggleLoginPage}
-                    >Back to Login
-                    </Button> */}
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -187,7 +179,7 @@ export default class SignUp extends Component {
                                     <br />
                                 </div>
                                 :
-                                <div></div>
+                                <div>{console.log("failed")}</div>
                             }
                         </form>
                     </div>

@@ -2,16 +2,9 @@ import React, { Component } from "react";
 import Progress from "./Progress.js";
 import ProgressStats from "./ProgressStats.js";
 
-import { base } from '../config/Firebase';
-import firebase from 'firebase';
-
 import FriendButton from "./FriendButton.js";
 import Milestones from "./Milestones.js";
-import Button from "@material-ui/core/Button";
 import "./Account.css";
-import Popover from "@material-ui/core/Popover";
-import Typography from "@material-ui/core/Typography";
-
 
 export default class Account extends Component {
   constructor(props) {
@@ -38,8 +31,8 @@ export default class Account extends Component {
               Welcome {this.props.match.params.firstName}!
             </h3>
           </div>
-          <Progress progress={90} />
-          <ProgressStats progress={90} />
+          <Progress progress={this.state.progress} />
+          <ProgressStats progress={this.state.progress} />
           <div className="refer-button">
             <FriendButton code={this.props.match.params.userId} />
           </div>

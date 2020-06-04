@@ -3,7 +3,7 @@ import { base } from '../config/Firebase';
 
 import "./Login.css";
 
-import { Typography, Avatar, Button, FormControl, Input, InputLabel } from '@material-ui/core'
+import { Typography, Button, FormControl, Input, InputLabel } from '@material-ui/core'
 
 import { BrowserRouter as Redirect } from "react-router-dom";
 
@@ -99,13 +99,6 @@ export default class Login extends Component {
                                 />
                             </FormControl>
                             <br />
-                            {/* <Button
-                        style={{ marginTop: 15, marginRight: 5 }}
-                        variant="contained"
-                        color="secondary"
-                        onClick={this.props.toggleRegisterPage} //TO PASSDOWN!!!!1
-                    >Register
-                    </Button> */}
                             <Button
                                 style={{ marginTop: 15, marginBottom: 5 }}
                                 type="submit"

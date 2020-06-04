@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header.js';
 import SideBar from './SideBar.js';
-import Backdrop from './Backdrop.js'
-
-import { base } from '../config/Firebase';
-import firebase from 'firebase';
+import Backdrop from './Backdrop.js';
 
 export default class NavBar extends Component {
     constructor(props) {

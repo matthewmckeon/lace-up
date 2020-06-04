@@ -18,7 +18,6 @@ export default class App extends Component {
       users: {},
       currentUserCode: "",
       isLoggedIn: false,
-      authListen: null,
     };
   }
 
@@ -41,6 +40,10 @@ export default class App extends Component {
       state: "users",
     });
 
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.usersRef);
   }
 
   toggleLoginState = (isLoggedIn) => {
