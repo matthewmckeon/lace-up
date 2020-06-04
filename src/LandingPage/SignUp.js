@@ -26,7 +26,7 @@ export default class SignUp extends Component {
     }
 
     handleRegister = (event) => {
-
+        
         this.setState({
             user: {
                 ...this.state.user, //https://github.com/reactstrap/reactstrap/issues/522
@@ -42,37 +42,43 @@ export default class SignUp extends Component {
     }
 
     registerUser = async (e) => {
+        console.log(this.props.users)
+        console.log(this.state)
         e.preventDefault();
-        try {
-            await base.initializedApp.auth().createUserWithEmailAndPassword(
-                this.state.user.email, this.state.user.password
-            )
-
-            base.initializedApp.auth().currentUser.updateProfile({
-                displayName: this.state.user.firstName // + " " + this.state.user.lastName,
-            })
-
-            this.setState({
-                user: {
-                    ...this.state.user,
-                    referralCode: base.initializedApp.auth().currentUser.uid //uid is a unique id created by firebase for each user
-                }
-            })
-
-            this.props.toggleLoginState(true)
-
-            //then add user 
-            this.props.addUser(this.state.user)
-            //and redirect to account page
-            this.setState({ redirect: true })
-
-            let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
-            this.props.history.push(userLink);
-
-        } catch (error) {
-            this.props.toggleLoginState(false)
-            this.setState({ redirect: false })
-            alert(error.message)
+        if(this.props.users[this.state.givenReferralCode] || this.state.hasCode === false) {
+            try {
+                await base.initializedApp.auth().createUserWithEmailAndPassword(
+                    this.state.user.email, this.state.user.password
+                )
+    
+                base.initializedApp.auth().currentUser.updateProfile({
+                    displayName: this.state.user.firstName // + " " + this.state.user.lastName,
+                })
+    
+                this.setState({
+                    user: {
+                        ...this.state.user,
+                        referralCode: base.initializedApp.auth().currentUser.uid //uid is a unique id created by firebase for each user
+                    }
+                })
+    
+                this.props.toggleLoginState(true)
+    
+                //then add user 
+                this.props.addUser(this.state.user)
+                //and redirect to account page
+                this.setState({ redirect: true })
+    
+                let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
+                this.props.history.push(userLink);
+    
+            } catch (error) {
+                this.props.toggleLoginState(false)
+                this.setState({ redirect: false })
+                alert(error.message)
+            }
+        } else {
+            alert("Please enter valid referral code.")
         }
     }
 
@@ -163,7 +169,7 @@ export default class SignUp extends Component {
                                 control={
                                     <Checkbox
                                         checked={this.state.user.hasCode}
-                                        onChange={() => this.handleInputCode}
+                                        onClick={this.handleInputCode}
                                         name="hasCode"
                                         color="primary"
                                     />
@@ -173,14 +179,14 @@ export default class SignUp extends Component {
                             {(this.state.user.hasCode) ?
                                 <div>
                                     <FormControl>
-                                        <InputLabel htmlFor="referralCode">Referral Code</InputLabel>
+                                        <InputLabel htmlFor="referralCodeGiven">Referral Code</InputLabel>
                                         <Input
-                                            id="referralCode"
-                                            name="referralCode"
+                                            id="referralCodeGiven"
+                                            name="referralCodeGiven"
                                             type="text"
                                             autoComplete="off"
                                             value={this.state.user.referralCodeGiven}
-                                            onChange={e => this.handleRegister(e)}
+                                            onChange={this.handleRegister}
                                             style={{ marginBottom: 5 }}
                                         />
                                     </FormControl>

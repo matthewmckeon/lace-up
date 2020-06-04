@@ -92,6 +92,8 @@ export default class App extends Component {
                     {...props}
                     updateCurrentUser={this.updateCurrentUser}
                     {...props}
+                    users = {this.state.users}
+                    {...props}
                   />
                 )}
               />
