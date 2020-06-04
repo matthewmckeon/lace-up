@@ -13,8 +13,8 @@ const useStyles = makeStyles({
   gridContainer: {
     paddingLeft: "60px",
     paddingRight: "60px",
-    paddingTop: "10px",
-    paddingBottom: "50px",
+    paddingTop: "30px",
+    paddingBottom: "30px",
     width: "99vw",
   },
 });
@@ -26,7 +26,7 @@ export default function HowItWorks() {
   return (
     <div className="landing">
       <div className="Grid">
-        <Grid container spacing={1} className={classes.gridContainer}>
+        <Grid container spacing={2} className={classes.gridContainer}>
           {PROGRAMS.map((program, index) => {
             return (
               <Grid key={index} item xs={4}>
@@ -47,18 +47,19 @@ export default function HowItWorks() {
         </Grid>
 
         <div
-          style={{ paddingBottom: "10px", backgroundColor: "black" }}
+          style={{ paddingBottom: "10px" }}
           className="buttons"
         >
-          <h1 style={{ color: "white" }}>Sign Up Now!</h1>
-          <Button className="login" variant="contained">
+          <h1 style={{ color: "white", textDecoration: 'none' }}>Sign Up Now!</h1>
+          <button className="login" variant="contained" style={{ color: "white", textDecoration: 'none' }}>
             <a href="/login">Login</a>
-          </Button>
+          </button>
           <div className="divider" />
-          <Button className="signup" variant="contained">
+          <button className="signup" variant="contained" style={{ color: "white", textDecoration: 'none' }}>
             <a href="/register">Sign Up</a>
-          </Button>
+          </button>
         </div>
+
       </div>
     </div>
   );
