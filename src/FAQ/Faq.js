@@ -3,18 +3,20 @@ import SimpleExpansionPanel from './SimpleExpansionPanel.js'
 import { REFERRAL_QS } from "./referralQs.js";
 import { LACEUP_QS } from "./laceUpQs.js";
 
+import "./Faq.css";
+
 export default class Faq extends Component {
     render() {
         return (
-            <div>
+            <div className="faq">
                 <a name="top"></a>
-                <h1>LaceUp FAQs</h1>
+                <h1 className="faqHeader1">LaceUp FAQs</h1>
                 <a href="#referralTop">Referral Program</a>
                 <br />
                 <a href="#laceupTop">LaceUp</a>
 
                 <a name="referralTop"></a>
-                <h2>Questions About Referral Program</h2>
+                <h1 className="faqHeader">Questions About Referral Program</h1>
                 {REFERRAL_QS.map((qa, index) => {
                     return (
                         <SimpleExpansionPanel key={index} qa={qa} qn={index} />
@@ -23,7 +25,7 @@ export default class Faq extends Component {
                 )}
 
                 <a name="laceupTop"></a>
-                <h2>Questions About Lace Up</h2>
+                <h1 className="faqHeader">Questions About Lace Up</h1>
                 {LACEUP_QS.map((qa, index) => {
                     return (
                         <SimpleExpansionPanel key={index} qa={qa} qn={index} />

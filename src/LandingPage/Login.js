@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { base } from '../config/Firebase';
-import firebase from 'firebase';
+
+import "./Login.css";
 
 import { Typography, Avatar, Button, FormControl, Input, InputLabel } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-
-import { ALPHA } from "./Alphabet.js";
 
 import { BrowserRouter as Redirect } from "react-router-dom";
 
@@ -34,22 +32,6 @@ export default class Login extends Component {
         })
     }
 
-    formatEmail = (email) => {
-        let indexAt = email.indexOf("@")
-        let emailKey = email.substring(0, indexAt)
-        return emailKey
-    }
-
-    createReferralCode = (emailKey) => {
-        let referralCode = "";
-        //https://www.quora.com/How-do-you-iterate-over-the-characters-of-a-string-in-JavaScript
-        [...emailKey].forEach(char => {
-            let num = ALPHA[char].toString();
-            referralCode += num
-        })
-        return referralCode
-    }
-
     loginUser = async (e) => {
         e.preventDefault()
         try {
@@ -60,21 +42,15 @@ export default class Login extends Component {
             this.setState({ redirect: true })
 
             //getId/code
-            let formattedEmail = this.formatEmail(this.state.user.email);
-            let userCode = this.createReferralCode(formattedEmail)
-            const userRef = firebase.database().ref('users/' + userCode)
-            userRef.once('value', snap => {
-                if (snap.val()) {
-                    this.setState({
-                        user: {
-                            ...this.state.user,
-                            firstName: snap.val().firstName,
-                            referralCode: snap.val().referralCode
-                        }
-                    })
+            let currentUserCode = base.initializedApp.auth().currentUser.uid
+            this.setState({
+                user: {
+                    ...this.state.user,
+                    referralCode: currentUserCode,
+                    firstName: base.initializedApp.auth().currentUser.displayName
                 }
             })
-            this.props.updateCurrentUser(userCode) //update current user to app
+            this.props.updateCurrentUser(currentUserCode) //update current user to app
 
             //https://scotch.io/courses/using-react-router-4/authentication-with-redirect
             let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
@@ -91,58 +67,57 @@ export default class Login extends Component {
         // console.log(this.props)
         let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
         return (
-            (this.state.redirect) ?
-                <Redirect to={userLink} />
-                :
-                <div className="loginForm">
-                    <h1>Log In</h1>
-                    <Avatar>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography style={{ fontSize: 30 }}>
-                        SIGN IN
+            <div className="formTot">
+                {(this.state.redirect) ?
+                    <Redirect to={userLink} />
+                    :
+                    <div className="formBody">
+                        <Typography style={{ fontSize: 30 }}>
+                            SIGN IN
                         </Typography>
-                    <form onSubmit={e => e.preventDefault()}>
-                        <FormControl required>
-                            <InputLabel htmlFor="email">Email Address</InputLabel>
-                            <Input
-                                id="email"
-                                name="email"
-                                autoComplete="off"
-                                autoFocus
-                                value={this.state.user.email}
-                                onChange={e => this.handleLogin(e)} />
-                        </FormControl>
-                        <br />
-                        <FormControl required>
-                            <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input
-                                id="password"
-                                name="password"
-                                type="password"
-                                autoComplete="off"
-                                value={this.state.user.password}
-                                onChange={e => this.handleLogin(e)}
-                            />
-                        </FormControl>
-                        <br />
-                        {/* <Button
+                        <form onSubmit={e => e.preventDefault()}>
+                            <FormControl required>
+                                <InputLabel htmlFor="email">Email Address</InputLabel>
+                                <Input
+                                    id="email"
+                                    name="email"
+                                    autoComplete="off"
+                                    autoFocus
+                                    value={this.state.user.email}
+                                    onChange={e => this.handleLogin(e)} />
+                            </FormControl>
+                            <br />
+                            <FormControl required>
+                                <InputLabel htmlFor="password">Password</InputLabel>
+                                <Input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    autoComplete="off"
+                                    value={this.state.user.password}
+                                    onChange={e => this.handleLogin(e)}
+                                />
+                            </FormControl>
+                            <br />
+                            {/* <Button
                         style={{ marginTop: 15, marginRight: 5 }}
                         variant="contained"
                         color="secondary"
                         onClick={this.props.toggleRegisterPage} //TO PASSDOWN!!!!1
                     >Register
                     </Button> */}
-                        <Button
-                            style={{ marginTop: 15, marginBottom: 5 }}
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            onClick={(e) => this.loginUser(e)}
-                        > Sign In
+                            <Button
+                                style={{ marginTop: 15, marginBottom: 5 }}
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                onClick={(e) => this.loginUser(e)}
+                            > Sign In
                     </Button>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                }
+            </div>
         )
     }
 }

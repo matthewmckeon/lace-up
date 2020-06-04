@@ -40,33 +40,8 @@ export default class App extends Component {
       context: this,
       state: "users",
     });
-  };
 
-  componentDidMount = () => {
-    let authListener = base.initializedApp.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        //this.checkLogin()
-        console.log("still logged in")
-      } else {
-        console.log("need to log in")
-      }
-    });
-    this.setState({ authListen: authListener })
   }
-
-  componentWillUnmount() {
-    base.removeBinding(this.usersRef);
-    this.state.authListen();
-  }
-
-  // checkLogin = () => {
-  //   this.setState(prevState => {
-  //     return ({
-  //       currentUserCode: prevState.currentUserCode
-  //     })
-  //   })
-  // }
-
 
   toggleLoginState = (isLoggedIn) => {
     this.setState({ isLoggedIn: isLoggedIn });
@@ -78,12 +53,14 @@ export default class App extends Component {
 
   //https://learnwithparam.com/blog/dynamic-pages-in-react-router/
   render() {
+
     return (
       <div>
         <NavBar
           isLoggedIn={this.state.isLoggedIn}
-          users={this.state.users}
           currentUserCode={this.state.currentUserCode}
+          users={this.users}
+
         />
         <Router>
           <div className="App">
@@ -93,8 +70,7 @@ export default class App extends Component {
               <Route
                 path="/account/:firstName/:userId"
                 render={(props) => <Account {...props} />}
-              />{" "}
-              {/* unique to user */}
+              />
               <Route
                 path="/login"
                 render={(props) => (
@@ -130,7 +106,7 @@ export default class App extends Component {
                   />
                 )}
               />
-              <Route path="/" render={(props) => <HowItWorks {...props} />} />{" "}
+              <Route path="/" render={(props) => <HowItWorks {...props} />} />
               {/* landing page before log in*/}
             </Switch>
           </div>
