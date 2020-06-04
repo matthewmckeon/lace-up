@@ -13,10 +13,11 @@ export default class Account extends Component {
     super(props);
     this.state = {
       progress: 0,
+      mileStoneHoverIndex: -1,
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     let userCode = this.props.match.params.userId;
 
     let referralLink = "/users/" + userCode
@@ -47,9 +48,7 @@ export default class Account extends Component {
             <FriendButton code={this.props.match.params.userId} />
           </div>
         </div>
-        <div className="right">
-          <Milestones />
-        </div>
+
       </div>
     );
   }

@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Typography } from "@material-ui/core";
+import AWARDS from '../LandingPage/Awards';
 
 import "./Milestones.css";
 
-export default function Milestones() {
+export default function Milestones(props) {
+
+  
+  const [isShowing, setIsShowing] = useState(props.isShowing)
+
+  useEffect(() => {
+    setIsShowing(props.isShowing)
+  }, [props.isShowing])
+
+
   return (
+    
     <div className="cardList">
-      <Card className="milestone-card">
+      {isShowing === 10 ? <Card className="milestone-card ten" isHidden = {true}>
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2">
             10 Referrals
@@ -18,8 +29,8 @@ export default function Milestones() {
             giveaways, and more!
           </Typography>
         </CardContent>
-      </Card>
-      <Card className="milestone-card">
+      </Card> : null}
+      {isShowing === 25 ? <Card className="milestone-card twenty-five">
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2">
             25 Referrals
@@ -29,8 +40,8 @@ export default function Milestones() {
             decals!
           </Typography>
         </CardContent>
-      </Card>
-      <Card className="milestone-card">
+      </Card> : null}
+      {isShowing === 50 ? <Card className="milestone-card fifty">
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2">
             50 Referrals
@@ -40,8 +51,8 @@ export default function Milestones() {
             T-Shirt not sold commercially!
           </Typography>
         </CardContent>
-      </Card>
-      <Card className="milestone-card">
+      </Card> : null}
+      {isShowing === 100 ? <Card className="milestone-card one-hundred">
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2">
             100 Referrals
@@ -51,7 +62,7 @@ export default function Milestones() {
             to you for free!
           </Typography>
         </CardContent>
-      </Card>
+      </Card> : null}
     </div>
   );
 }
