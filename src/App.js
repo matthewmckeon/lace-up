@@ -94,7 +94,7 @@ export default class App extends Component {
           toggleLoginState={this.toggleLoginState}
 
         />
-        <Router>
+        <Router basename="/">
           <div className="App">
             <Switch>
               <Route path="/faq" render={(props) => <Faq {...props} />} />

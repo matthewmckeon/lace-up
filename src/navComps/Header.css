@@ -1,24 +1,29 @@
+
+
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   background: #124559;
-  height: 25px;
+  /* height: 25px; */
   padding: 6vh;
   z-index: 1;
+  max-height: 20px;
 }
 
-.header_logo a {
+/* .header_logo a {
   float: right;
-}
+} */
 
 .logo {
-  height: 80px;
-  width: 240px;
+  width: 200px;
+  height: auto;
+  margin-top: -3vh;
   position: relative;
-  bottom: 22px;
-  left: 1030px;
+  float: right;
+  left: -5vw;
+  background-size: contain;
 }
 .header_nav {
   height: 100%;

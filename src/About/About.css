@@ -1,27 +1,30 @@
 .image {
-  width: 350px;
-  height: 505px;
+  width: auto;
+  height: 104vh;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: 1em;
   border-radius: 1%;
 }
-.left {
+.leftcolumn {
+  width: 60%;
   float: left;
-  width: 65%;
 }
 
+.about {
+  display: flex;
+  background-image: url(https://images.unsplash.com/photo-1504080275154-fc19d1d8ceb7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
+  background-size: cover;
+  background-position: center;
+}
 .image-container {
   float: left;
-  width: 20%;
-  position: relative;
-  right: 12em;
-  background-color: #ffb20f;
-  background-position-x: 100% 50%;
+  width: 40%;
+  padding-left: 1vw;
 }
 
 .mission,
 .programs {
-  width: 79%;
+  width: 100%;
   margin: 1em;
   display: flex;
 }
