@@ -1,19 +1,10 @@
-.lufaq {
-  text-align: center;
-  color: #124559;
-  font-size: 2.5em;
-  font-weight: bold;
-  text-shadow: 2px 2px white;
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
 
 .space {
   height: 10px;
 }
 
 .spaceLast {
-  height: 30px;
+  height: 5px;
 }
 
 img {
