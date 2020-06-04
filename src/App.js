@@ -8,7 +8,9 @@ import Account from "./Account/Account.js";
 import NavBar from "./navComps/NavBar.js";
 import HowItWorks from "./LandingPage/howItWorks.js";
 import MainFooter from "./Footer/MainFooter";
+
 import { base } from "./config/Firebase";
+import firebase from 'firebase';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 export default class App extends Component {
@@ -30,11 +32,27 @@ export default class App extends Component {
       email: user.email,
       referralCode: user.referralCode,
       score: 0,
+      givenReferralCode: user.givenReferralCode
     };
     this.setState({ users });
-  };
 
-  componentWillMount = () => {
+    let referredPrevScore = 0
+    if (user.hasCode) {
+      //then update the score of the person with the given code
+      let referralLink = "/users/" + user.givenReferralCode
+
+      let referredRef = firebase.database().ref(referralLink)
+      referredRef.once('value', snap => {
+        if (snap.val()) {
+          referredPrevScore = snap.val().score
+        }
+      })
+      referredPrevScore += 1 //update the person whom the referred code belongs to by adding 1
+      firebase.database().ref(referralLink).update({ score: referredPrevScore })
+    }
+  }
+
+  componentDidMount = () => {
     this.usersRef = base.syncState("users", {
       context: this,
       state: "users",
@@ -63,6 +81,7 @@ export default class App extends Component {
           isLoggedIn={this.state.isLoggedIn}
           currentUserCode={this.state.currentUserCode}
           users={this.users}
+          toggleLoginState={this.toggleLoginState}
 
         />
         <Router>

@@ -6,6 +6,8 @@ import FriendButton from "./FriendButton.js";
 import Milestones from "./Milestones.js";
 import "./Account.css";
 
+import firebase from 'firebase';
+
 export default class Account extends Component {
   constructor(props) {
     super(props);
@@ -14,11 +16,19 @@ export default class Account extends Component {
     };
   }
 
-  getUserScore = () => {
+  componentDidMount() {
     let userCode = this.props.match.params.userId;
-    this.setState({
-      progress: userCode,
-    });
+
+    let referralLink = "/users/" + userCode
+
+    let referredRef = firebase.database().ref(referralLink)
+    referredRef.once('value', snap => {
+      if (snap.val()) {
+        this.setState({
+          progress: snap.val().score
+        })
+      }
+    })
   };
 
   render() {

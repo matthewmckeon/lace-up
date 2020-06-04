@@ -32,6 +32,7 @@ export default class SignUp extends Component {
                 [event.target.name]: event.target.value
             }
         })
+        console.log(event.target.name, event.target.value)
     }
 
     formatEmail = (email) => {
@@ -72,6 +73,7 @@ export default class SignUp extends Component {
             this.props.toggleLoginState(false)
             this.setState({ redirect: false })
             alert(error.message)
+
         }
     }
 
@@ -83,7 +85,6 @@ export default class SignUp extends Component {
                     hasCode: !this.state.user.hasCode
                 }
             })
-        console.log(this.state.user.hasCode)
     }
 
     render() {
@@ -155,7 +156,7 @@ export default class SignUp extends Component {
                                 control={
                                     <Checkbox
                                         checked={this.state.user.hasCode}
-                                        onChange={() => this.handleInputCode}
+                                        onChange={() => this.handleInputCode()}
                                         name="hasCode"
                                         color="primary"
                                     />
@@ -167,11 +168,11 @@ export default class SignUp extends Component {
                                     <FormControl>
                                         <InputLabel htmlFor="referralCode">Referral Code</InputLabel>
                                         <Input
-                                            id="referralCode"
-                                            name="referralCode"
+                                            id="givenReferralCode"
+                                            name="givenReferralCode"
                                             type="text"
                                             autoComplete="off"
-                                            value={this.state.user.referralCodeGiven}
+                                            value={this.state.user.givenReferralCode}
                                             onChange={e => this.handleRegister(e)}
                                             style={{ marginBottom: 5 }}
                                         />
@@ -179,7 +180,7 @@ export default class SignUp extends Component {
                                     <br />
                                 </div>
                                 :
-                                <div>{console.log("failed")}</div>
+                                <div></div>
                             }
                         </form>
                     </div>

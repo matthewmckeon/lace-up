@@ -30,9 +30,7 @@ export default class NavBar extends Component {
 
         if (this.state.sideBarOpen) {
             sideBar = <SideBar
-                isLoggedIn={this.props.isLoggedIn}
-                users={this.props.users}
-                currentUserCode={this.props.currentUserCode}
+                toggleLoginState={this.props.toggleLoginState}
             />
             backdrop = <Backdrop click={this.backdropClickHandler} />
         }
