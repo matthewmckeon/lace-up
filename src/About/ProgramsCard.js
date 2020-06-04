@@ -22,21 +22,21 @@ export default function ProgramsCard() {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <h3>Our Mission</h3>
+        <h3>Programs</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
+          Here at LaceUp, we believe in sustainability and style going hand in
+          hand. This is why we maintain a recyclable shoe model, and for every
+          used shoe you turn in we will not only reuse the materials to create
+          an even better shoe, but we'll donate a pair of shoes to a child in
+          need. Not ready to part with your shoe yet? We've got you covered on
+          that as well, with low-cost repairs that will get your shoe back to
+          you in a matter of days.
           <br />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
+          <br />
+          Particpate in our LaceUp influencer program for exclusive rewards and
+          deals with our products. Not only will you get access to samples of
+          our products that you can then review on your social media, but you'll
+          be the first to know about incoming collections.
         </p>
       </CardContent>
     </Card>

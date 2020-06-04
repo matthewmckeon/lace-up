@@ -6,7 +6,7 @@ import "./About.css";
 export default function About() {
   return (
     <div className="about">
-      <div className="left">
+      <div className="leftcolumn">
         <div className="mission">
           <AboutCard />
         </div>

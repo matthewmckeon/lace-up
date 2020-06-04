@@ -30,3 +30,9 @@
   margin-left: 1em;
   margin-right: 1em;
 }
+
+.landing {
+  background-image: url(https://images.unsplash.com/photo-1542674684-9d4e400a09fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80);
+  background-position: center;
+  background-size: cover;
+}
