@@ -31,7 +31,7 @@ export default function SimpleCard(props) {
 
   return (
     <Card className={classes.root}>
-      <CardContent>
+      <CardContent style={{ textAlign: "center" }}>
         <h1>{props.award.title}</h1>
         <p>{props.award.descr}</p>
         {props.award.title === "10 Referrals" ? (
