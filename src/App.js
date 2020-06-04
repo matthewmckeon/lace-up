@@ -13,6 +13,7 @@ import { base } from "./config/Firebase";
 import firebase from 'firebase';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+//BrowserRouter in App.js, Login.js, SignUp, and Account!!!!!!!!!!!!!
 
 export default class App extends Component {
   constructor(props) {
@@ -28,16 +29,16 @@ export default class App extends Component {
   addUser = (user) => {
     const users = { ...this.state.users };
 
-    if(user.givenReferralCode) {
+    if (user.givenReferralCode) {
       let newMyReferralList = users[user.givenReferralCode].myReferrals
-      if(newMyReferralList[0]==="no referrals yet") {
+      if (newMyReferralList[0] === "no referrals yet") {
         newMyReferralList[0] = (user.referralCode)
       } else {
         newMyReferralList.push(user.referralCode)
       }
       users[user.givenReferralCode] = {
-      myReferrals: newMyReferralList
-    }
+        myReferrals: newMyReferralList
+      }
     }
 
     users[user.referralCode] = {
@@ -99,15 +100,15 @@ export default class App extends Component {
           <div className="App">
             <Switch>
               <Route path="/faq" render={(props) => <Faq {...props} />} />
-              <Route path="/about" render={(props) => 
-                <About />} 
+              <Route path="/about" render={(props) =>
+                <About />}
               />
               <Route
                 path="/account/:firstName/:userId"
-                render={(props) => 
-                <Account 
-                    users = {this.state.users}
-                    {...props} 
+                render={(props) =>
+                  <Account
+                    users={this.state.users}
+                    {...props}
                   />}
               />
               <Route
@@ -143,7 +144,7 @@ export default class App extends Component {
                   />
                 )}
               />
-              <Route path="/" render={(props) => <HowItWorks isLoggedIn = {this.state.isLoggedIn} {...props} />} />
+              <Route path="/" render={(props) => <HowItWorks isLoggedIn={this.state.isLoggedIn} {...props} />} />
               {/* landing page before log in*/}
             </Switch>
           </div>

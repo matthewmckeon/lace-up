@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import './ReferralHistory.css';
 
 const useStyles = makeStyles({
@@ -16,8 +16,8 @@ function ReferralHistory(props) {
     let currentReferralList;
     const classes3 = useStyles();
 
-    if(props.users[props.currentCode]){
-        if(props.users[props.currentCode].myReferrals){
+    if (props.users[props.currentCode]) {
+        if (props.users[props.currentCode].myReferrals) {
             currentReferralList = props.users[props.currentCode].myReferrals
         } else {
             currentReferralList = ["no referrals yet"]
@@ -26,20 +26,20 @@ function ReferralHistory(props) {
         currentReferralList = ["no referrals yet"]
     }
     console.log(currentReferralList)
-    return(
+    return (
         <div>
             <div className="container">
                 <div className="card">
                     <h1>Referral History</h1>
-                    { currentReferralList.map((userId, index)=>{
+                    {currentReferralList.map((userId, index) => {
                         return userId === "no referrals yet" ?
-                        <p>{"No referrals yet."}</p>: <Card className = {classes3.root}>
-                            {props.users[userId].dateSignedUp + " - "+props.users[userId].firstName+ " " +props.users[userId].lastName}
-                        </Card>
+                            <p>{"No referrals yet."}</p> : <Card key={index} className={classes3.root}>
+                                {props.users[userId].dateSignedUp + " - " + props.users[userId].firstName + " " + props.users[userId].lastName}
+                            </Card>
                     })}
                 </div>
             </div>
-            <div className = "referralHistoryCard"></div>
+            <div className="referralHistoryCard"></div>
         </div>
     )
 }

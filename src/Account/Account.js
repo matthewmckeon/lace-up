@@ -28,20 +28,20 @@ export default function Account(props) {
       }
     })
 
-    let unsub = base.initializedApp.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        setIsLoggedIn(true)
-        console.log(true)
-      }
-      else {
-        setIsLoggedIn(false)
-        console.log(false)
-        props.history.push("/login")
-      }
-    })
-
-
   }, [])
+
+  let unsub = base.initializedApp.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      setIsLoggedIn(true)
+    }
+    else {
+      setIsLoggedIn(false)
+      console.log(false)
+      props.history.push("/login")
+    }
+  })
+
+  unsub()
 
 
   return (
