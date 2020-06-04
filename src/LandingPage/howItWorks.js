@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./LandingPage.css";
 import Card from "./Card";
 import Card1 from "./Card1";
@@ -6,8 +7,9 @@ import Card1 from "./Card1";
 import { Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { PROGRAMS } from "./Programs.js";
+import { base } from '../config/Firebase';
 import { AWARDS } from "./Awards.js";
+import { RULES } from "./Rules.js";
 
 const useStyles = makeStyles({
   gridContainer: {
@@ -21,16 +23,27 @@ const useStyles = makeStyles({
 
 export default function HowItWorks(props) {
   const classes = useStyles();
-  const classes2 = useStyles();
-  console.log(props)
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+
+  base.initializedApp.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      setIsLoggedIn(true)
+    }
+    else {
+      setIsLoggedIn(false)
+    }
+
+  })
+
   return (
     <div className="landing">
       <div className="Grid">
-        <Grid container spacing={2} className={classes.gridContainer}>
-          {PROGRAMS.map((program, index) => {
+        <Grid container spacing={1} className={classes.gridContainer}>
+          {RULES.map((rule, index) => {
             return (
               <Grid key={index} item xs={4}>
-                <Card program={program} />
+                <Card rule={rule} />
               </Grid>
             );
           })}
@@ -45,21 +58,23 @@ export default function HowItWorks(props) {
             );
           })}
         </Grid>
-
-        {props.isLoggedIn ? null : <div
-          style={{ paddingBottom: "10px" }}
-          className="buttons"
-        >
-          <h1 style={{ color: "white", textDecoration: 'none' }}>Sign Up Now!</h1>
-          <button className="login" variant="contained" style={{ color: "white", textDecoration: 'none' }}>
-            <a href="/login">Login</a>
-          </button>
-          <div className="divider" />
-          <button className="signup" variant="contained" style={{ color: "white", textDecoration: 'none' }}>
-            <a href="/register">Sign Up</a>
-          </button>
-        </div>}
-
+        {(isLoggedIn) ?
+          <div></div>
+          :
+          <div
+            style={{ paddingBottom: "10px", backgroundColor: "black" }}
+            className="buttons"
+          >
+            <h1 style={{ color: "white" }}>Sign Up Now!</h1>
+            <Button className="login" variant="contained">
+              <a href="/login">Login</a>
+            </Button>
+            <div className="divider" />
+            <Button className="signup" variant="contained">
+              <a href="/register">Sign Up</a>
+            </Button>
+          </div>
+        }
       </div>
     </div>
   );

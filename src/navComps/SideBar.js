@@ -2,7 +2,6 @@ import React from 'react';
 import './SideBar.css'
 
 import { base } from '../config/Firebase';
-import Logout from "../LandingPage/Logout.js";
 import { Button } from '@material-ui/core';
 
 const SideBar = props => {
@@ -26,7 +25,6 @@ const SideBar = props => {
         <nav className='side-bar'>
             <ul>
                 {(userLogged) ?
-
                     < div >
                         <li><a href={userLink}>
                             {`${currentUser.displayName}'s Account`}
@@ -47,8 +45,6 @@ const SideBar = props => {
                         <li><a href="/">Home</a></li>
                         <li><a href="/about">About</a></li>
                         <li><a href='/faq'>FAQs</a></li>
-                        {/* <li><a href='/login'>Login</a></li>
-                        <li><a href='/register'>Register</a></li> */}
                     </div>
 
                 }

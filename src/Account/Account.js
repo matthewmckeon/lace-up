@@ -39,7 +39,7 @@ export default class Account extends Component {
         <div className="left">
 
           <div className="welcome">
-            <h3 style={{ textTransform: "capitalize" }}>
+            <h3 style={{ textTransform: "capitalize", fontSize: "40px", textAlign: "center" }}>
               Welcome {this.props.match.params.firstName}!
             </h3>
           </div>
@@ -48,7 +48,7 @@ export default class Account extends Component {
           <div className="refer-button">
             <FriendButton code={this.props.match.params.userId} />
           </div>
-          <ReferralHistory users = {this.props.users} currentCode = {this.props.match.params.userId}/>
+          <ReferralHistory users={this.props.users} currentCode={this.props.match.params.userId} />
         </div>
 
       </div>
