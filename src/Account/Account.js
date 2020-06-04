@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Progress from "./Progress.js";
 import ProgressStats from "./ProgressStats.js";
+import ReferralHistory from "./ReferralHistory";
 
 import FriendButton from "./FriendButton.js";
 import Milestones from "./Milestones.js";
@@ -47,6 +48,7 @@ export default class Account extends Component {
           <div className="refer-button">
             <FriendButton code={this.props.match.params.userId} />
           </div>
+          <ReferralHistory users = {this.props.users} currentCode = {this.props.match.params.userId}/>
         </div>
 
       </div>

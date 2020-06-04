@@ -25,6 +25,8 @@ export default class SignUp extends Component {
                 referralCode: "", //unique code for each new user
                 hasCode: false,
                 givenReferralCode: "", //if has a referral code from somebody else
+                myReferrals: ["no referrals yet"],
+                dateSignedUp: Date().substring(4,15)
             },
             redirect: false,
         };
@@ -42,7 +44,7 @@ export default class SignUp extends Component {
     registerUser = async (e) => {
         e.preventDefault();
 
-        if (this.props.users[this.state.user.givenReferralCode]) {
+        if (this.props.users[this.state.user.givenReferralCode] || !this.state.givenReferralCode) {
             try {
                 await base.initializedApp.auth().createUserWithEmailAndPassword(
                     this.state.user.email, this.state.user.password
