@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HowItWorks() {
+export default function HowItWorks(props) {
   const classes = useStyles();
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
