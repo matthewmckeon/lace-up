@@ -2,7 +2,7 @@ import React from "react";
 import "./LandingPage.css";
 import Card from "./Card";
 import Card1 from "./Card1";
-import { Grid } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -30,6 +30,20 @@ export default function HowItWorks() {
           <Card />
         </Grid>
       </Grid>
+      <div className='buttons'>
+        <Button
+          className='login'
+          variant="contained"
+        >
+          <a href='/login'>Login</a>
+        </Button>
+        <div className="divider" />
+        <Button
+          className='signup'
+          variant="contained"
+        >
+          <a href='/register'>Sign Up</a></Button>
+      </div>
     </div>
   );
 }

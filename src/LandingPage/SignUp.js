@@ -26,13 +26,13 @@ export default class SignUp extends Component {
     }
 
     handleRegister = (event) => {
-
         this.setState({
             user: {
                 ...this.state.user, //https://github.com/reactstrap/reactstrap/issues/522
-                [event.target.name]: event.target.value.trim()
+                [event.target.name]: event.target.value
             }
         })
+        console.log(event.target.name, event.target.value)
     }
 
     formatEmail = (email) => {
@@ -49,7 +49,7 @@ export default class SignUp extends Component {
             )
 
             base.initializedApp.auth().currentUser.updateProfile({
-                displayName: this.state.user.firstName // + " " + this.state.user.lastName,
+                displayName: this.state.user.firstName + " " + this.state.user.lastName,
             })
 
             this.setState({
@@ -73,6 +73,7 @@ export default class SignUp extends Component {
             this.props.toggleLoginState(false)
             this.setState({ redirect: false })
             alert(error.message)
+
         }
     }
 
@@ -87,7 +88,6 @@ export default class SignUp extends Component {
     }
 
     render() {
-        // console.log(this.props)
         let newAccountLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
         return (
             <div className="formTot">
@@ -152,18 +152,11 @@ export default class SignUp extends Component {
                             > Register
                     </Button>
                             <br />
-                            {/* <Button
-                        style={{ marginTop: 5 }}
-                        variant="contained"
-                        color="primary"
-                        onClick={this.props.toggleLoginPage}
-                    >Back to Login
-                    </Button> */}
                             <FormControlLabel
                                 control={
                                     <Checkbox
                                         checked={this.state.user.hasCode}
-                                        onChange={() => this.handleInputCode}
+                                        onChange={() => this.handleInputCode()}
                                         name="hasCode"
                                         color="primary"
                                     />
@@ -175,11 +168,11 @@ export default class SignUp extends Component {
                                     <FormControl>
                                         <InputLabel htmlFor="referralCode">Referral Code</InputLabel>
                                         <Input
-                                            id="referralCode"
-                                            name="referralCode"
+                                            id="givenReferralCode"
+                                            name="givenReferralCode"
                                             type="text"
                                             autoComplete="off"
-                                            value={this.state.user.referralCodeGiven}
+                                            value={this.state.user.givenReferralCode}
                                             onChange={e => this.handleRegister(e)}
                                             style={{ marginBottom: 5 }}
                                         />

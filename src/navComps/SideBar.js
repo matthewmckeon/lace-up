@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link, Router } from "react-router-dom";
 import './SideBar.css'
 
 import { base } from '../config/Firebase';
+import Logout from "../LandingPage/Logout.js";
+import { Button } from '@material-ui/core';
 
 const SideBar = props => {
     const [userLogged, setUserLogged] = React.useState(false)
@@ -32,15 +33,20 @@ const SideBar = props => {
                         </a></li>
                         <li><a href="/about">About</a></li>
                         <li><a href='/faq'>FAQs</a></li>
-                        <li><a href='/log-out'>Log Out</a></li>
+                        <li><Button
+                            variant="contained"
+                            color="secondary"
+                        ><a href='/log-out'>Log Out</a></Button>
+                        </li>
+
                     </div>
                     :
 
                     < div >
                         <li><a href="/about">About</a></li>
                         <li><a href='/faq'>FAQs</a></li>
-                        <li><a href='/login'>Login</a></li>
-                        <li><a href='/register'>Register</a></li>
+                        {/* <li><a href='/login'>Login</a></li>
+                        <li><a href='/register'>Register</a></li> */}
                     </div>
 
                 }
