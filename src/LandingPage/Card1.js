@@ -1,14 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+
+import FacebookIcon from '@material-ui/icons/Facebook';
 
 const useStyles = makeStyles({
   root: {
     minWidth: 200,
-    borderRadius: 10,
+    minHeight: 280,
+    borderRadius: 100,
   },
   bullet: {
     display: 'inline-block',
@@ -23,15 +25,26 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard() {
+export default function SimpleCard(props) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <h1>Loren Ipsum</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+        <h1>{props.award.title}</h1>
+        <p>{props.award.descr}</p>
+        {(props.award.title === "10 Referrals") ?
+          <FacebookIcon color="primary" />
+          :
+          (props.award.title === "25 Referrals") ?
+            <img style={{ width: "80%", height: "auto", marginTop: "39px" }} src={require('../images/decal.png')} alt="decal" />
+            :
+            (props.award.title === "50 Referrals") ?
+              <img style={{ width: "37%", height: "auto" }} src={require('../images/shirt.svg')} alt="shirt" />
+              :
+              <img style={{ width: "32%", height: "auto" }} src={require('../images/allbirds.jpg')} alt="allbird" />
+        }
       </CardContent>
     </Card>
   );
