@@ -10,9 +10,9 @@ import HowItWorks from "./LandingPage/howItWorks.js";
 import MainFooter from "./Footer/MainFooter";
 
 import { base } from "./config/Firebase";
-import firebase from 'firebase';
+import firebase from "firebase";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 export default class App extends Component {
   constructor(props) {
@@ -52,31 +52,33 @@ export default class App extends Component {
     };
     this.setState({ users });
 
-    let referredPrevScore = 0
+    let referredPrevScore = 0;
     if (user.hasCode) {
       //then update the score of the person with the given code
-      let referralLink = "/users/" + user.givenReferralCode
+      let referralLink = "/users/" + user.givenReferralCode;
 
-      let referredRef = firebase.database().ref(referralLink)
-      referredRef.once('value', snap => {
+      let referredRef = firebase.database().ref(referralLink);
+      referredRef.once("value", (snap) => {
         if (snap.val()) {
-          referredPrevScore = snap.val().score
+          referredPrevScore = snap.val().score;
         }
-      })
+      });
 
       //https://medium.com/@hasangi/writing-deleting-and-updating-data-in-firebase-realtime-database-with-javascript-f26113ec8c93
-      referredPrevScore += 1 //update the person whom the referred code belongs to by adding 1
-      firebase.database().ref(referralLink).update({ score: referredPrevScore })
+      referredPrevScore += 1; //update the person whom the referred code belongs to by adding 1
+      firebase
+        .database()
+        .ref(referralLink)
+        .update({ score: referredPrevScore });
     }
-  }
+  };
 
   componentDidMount = () => {
     this.usersRef = base.syncState("users", {
       context: this,
       state: "users",
     });
-
-  }
+  };
 
   componentWillUnmount() {
     base.removeBinding(this.usersRef);
@@ -88,14 +90,10 @@ export default class App extends Component {
 
   //https://learnwithparam.com/blog/dynamic-pages-in-react-router/
   render() {
-
     return (
       <div>
-        <NavBar
-          toggleLoginState={this.toggleLoginState}
-
-        />
-        <Router basename="/">
+        <NavBar toggleLoginState={this.toggleLoginState} />
+        <Router basename="www.mattluthompson.github.io/lace-up">
           <div className="App">
             <Switch>
               <Route path="/faq" render={(props) => <Faq {...props} />} />
@@ -113,10 +111,7 @@ export default class App extends Component {
               <Route
                 path="/login"
                 render={(props) => (
-                  <Login
-                    toggleLoginState={this.toggleLoginState}
-                    {...props}
-                  />
+                  <Login toggleLoginState={this.toggleLoginState} {...props} />
                 )}
               />
               <Route
@@ -137,14 +132,10 @@ export default class App extends Component {
               <Route
                 path="/log-out"
                 render={(props) => (
-                  <Logout
-                    toggleLoginState={this.toggleLoginState}
-                    {...props}
-                  />
+                  <Logout toggleLoginState={this.toggleLoginState} {...props} />
                 )}
               />
               <Route path="/" render={(props) => <HowItWorks isLoggedIn = {this.state.isLoggedIn} {...props} />} />
-              {/* landing page before log in*/}
             </Switch>
           </div>
         </Router>
