@@ -25,6 +25,8 @@ export default class SignUp extends Component {
                 referralCode: "", //unique code for each new user
                 hasCode: false,
                 givenReferralCode: "", //if has a referral code from somebody else
+                myReferrals: ["no referrals yet"],
+                dateSignedUp: Date().substring(4,15)
             },
             redirect: false,
         };

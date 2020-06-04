@@ -16,6 +16,9 @@
 
 .buttons {
   text-align: center;
+  text-shadow: 3px 3px red ;
+  font-size: 2.0em;
+  text-decoration: none;
 }
 
 .divider {
@@ -35,4 +38,14 @@
   background-image: url(https://images.unsplash.com/photo-1542674684-9d4e400a09fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80);
   background-position: center;
   background-size: cover;
+}
+
+button{
+  font-size: 1em;
+  border-radius:15px;
+  background-color: white;
+}
+
+button a{
+  text-decoration: none;
 }
