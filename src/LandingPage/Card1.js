@@ -32,7 +32,7 @@ export default function SimpleCard(props) {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <h1 style={{ textAlign: "center" }}>{props.award.title}</h1>
+        <h1 style={{ position: "relative", left: "2.5vw" }}>{props.award.title}</h1>
         <p>{props.award.descr}</p>
         {props.award.title === "10 Referrals" ? (
           <FacebookIcon
