@@ -8,9 +8,12 @@ import Account from "./Account/Account.js";
 import NavBar from "./navComps/NavBar.js";
 import HowItWorks from "./LandingPage/howItWorks.js";
 import MainFooter from "./Footer/MainFooter";
+
 import { base } from "./config/Firebase";
+import firebase from 'firebase';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +21,6 @@ export default class App extends Component {
       users: {},
       currentUserCode: "",
       isLoggedIn: false,
-      authListen: null,
     };
   }
 
@@ -31,11 +33,29 @@ export default class App extends Component {
       email: user.email,
       referralCode: user.referralCode,
       score: 0,
+      givenReferralCode: user.givenReferralCode
     };
     this.setState({ users });
-  };
 
-  componentWillMount = () => {
+    let referredPrevScore = 0
+    if (user.hasCode) {
+      //then update the score of the person with the given code
+      let referralLink = "/users/" + user.givenReferralCode
+
+      let referredRef = firebase.database().ref(referralLink)
+      referredRef.once('value', snap => {
+        if (snap.val()) {
+          referredPrevScore = snap.val().score
+        }
+      })
+
+      //https://medium.com/@hasangi/writing-deleting-and-updating-data-in-firebase-realtime-database-with-javascript-f26113ec8c93
+      referredPrevScore += 1 //update the person whom the referred code belongs to by adding 1
+      firebase.database().ref(referralLink).update({ score: referredPrevScore })
+    }
+  }
+
+  componentDidMount = () => {
     this.usersRef = base.syncState("users", {
       context: this,
       state: "users",
@@ -43,12 +63,12 @@ export default class App extends Component {
 
   }
 
+  componentWillUnmount() {
+    base.removeBinding(this.usersRef);
+  }
+
   toggleLoginState = (isLoggedIn) => {
     this.setState({ isLoggedIn: isLoggedIn });
-  };
-
-  updateCurrentUser = (userCode) => {
-    this.setState({ currentUserCode: userCode });
   };
 
   //https://learnwithparam.com/blog/dynamic-pages-in-react-router/
@@ -57,9 +77,7 @@ export default class App extends Component {
     return (
       <div>
         <NavBar
-          isLoggedIn={this.state.isLoggedIn}
-          currentUserCode={this.state.currentUserCode}
-          users={this.users}
+          toggleLoginState={this.toggleLoginState}
 
         />
         <Router>
@@ -76,8 +94,6 @@ export default class App extends Component {
                 render={(props) => (
                   <Login
                     toggleLoginState={this.toggleLoginState}
-                    {...props}
-                    updateCurrentUser={this.updateCurrentUser}
                     {...props}
                   />
                 )}
@@ -102,8 +118,6 @@ export default class App extends Component {
                 render={(props) => (
                   <Logout
                     toggleLoginState={this.toggleLoginState}
-                    {...props}
-                    currentUserCode={this.state.currentUserCode}
                     {...props}
                   />
                 )}

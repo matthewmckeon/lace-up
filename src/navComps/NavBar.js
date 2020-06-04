@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header.js';
 import SideBar from './SideBar.js';
-import Backdrop from './Backdrop.js'
-
-import { base } from '../config/Firebase';
-import firebase from 'firebase';
+import Backdrop from './Backdrop.js';
 
 export default class NavBar extends Component {
     constructor(props) {
@@ -33,9 +30,7 @@ export default class NavBar extends Component {
 
         if (this.state.sideBarOpen) {
             sideBar = <SideBar
-                isLoggedIn={this.props.isLoggedIn}
-                users={this.props.users}
-                currentUserCode={this.props.currentUserCode}
+                toggleLoginState={this.props.toggleLoginState}
             />
             backdrop = <Backdrop click={this.backdropClickHandler} />
         }
