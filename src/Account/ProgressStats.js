@@ -12,12 +12,13 @@ export default class ProgressStats extends Component {
           <h4>Your next reward is...</h4>
           <div className="reward">
             {progress <= 10
-              ? "An invitation to our exclusive Facebook group!"
+              ? ("An invitation to our exclusive Facebook group with "+(10-progress).toString()+" more referrals!")
               : progress <= 25
-              ? "A free LaceUp sticker pack!"
+              ? ("A free LaceUp sticker pack with "+(25-progress).toString()+" more referrals!")
               : progress <= 50
-              ? "A limited edition LaceUp shirt!"
-              : "Your choice of shoes from our newest collection!"}
+              ? ("A limited edition LaceUp shirt with "+(50-progress).toString()+" more referrals!")
+              : ("Your choice of shoes from our newest collection with "+(100-progress).toString()+" more referrals!")
+            }
           </div>
         </div>
       </div>
