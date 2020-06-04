@@ -12,7 +12,7 @@ import MainFooter from "./Footer/MainFooter";
 import { base } from "./config/Firebase";
 import firebase from 'firebase';
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 export default class App extends Component {
   constructor(props) {
@@ -108,7 +108,7 @@ export default class App extends Component {
                     {...props}
                     updateCurrentUser={this.updateCurrentUser}
                     {...props}
-                    users = {this.state.users}
+                    users={this.state.users}
                     {...props}
                   />
                 )}

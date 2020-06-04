@@ -10,7 +10,7 @@ import {
     Checkbox,
 } from "@material-ui/core";
 
-import { BrowserRouter as Redirect } from "react-router-dom";
+import { HashRouter as Redirect } from "react-router-dom";
 import "./Login.css";
 
 export default class SignUp extends Component {
