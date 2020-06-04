@@ -5,7 +5,7 @@ import "./Login.css";
 
 import { Typography, Button, FormControl, Input, InputLabel } from '@material-ui/core'
 
-import { HashRouter as Redirect } from "react-router-dom";
+import { BrowserRouter as Redirect } from "react-router-dom";
 
 
 export default class Login extends Component {
