@@ -1,28 +1,89 @@
 import React, { Component } from "react";
-import { base } from '../config/Firebase';
+import { base } from "../config/Firebase";
 import {
-    Typography, Button, FormControl, Input, InputLabel,
-    FormControlLabel, Checkbox
-} from '@material-ui/core'
+  Typography,
+  Button,
+  FormControl,
+  Input,
+  InputLabel,
+  FormControlLabel,
+  Checkbox,
+} from "@material-ui/core";
 
 import { BrowserRouter as Redirect } from "react-router-dom";
 import "./Login.css";
 
 export default class SignUp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: {
-                firstName: "",
-                lastName: "",
-                email: "",
-                password: "",
-                referralCode: "", //unique code for each new user
-                hasCode: false,
-                givenReferralCode: "", //if has a referral code from somebody else
-            },
-            redirect: false,
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        referralCode: "", //unique code for each new user
+        hasCode: false,
+        givenReferralCode: "", //if has a referral code from somebody else
+      },
+      redirect: false,
+    };
+  }
+
+  handleRegister = (event) => {
+    this.setState({
+      user: {
+        ...this.state.user, //https://github.com/reactstrap/reactstrap/issues/522
+        [event.target.name]: event.target.value,
+      },
+    });
+    console.log(event.target.name, event.target.value);
+  };
+
+  formatEmail = (email) => {
+    let indexAt = email.indexOf("@");
+    let emailKey = email.substring(0, indexAt);
+    return emailKey;
+  };
+
+  registerUser = async (e) => {
+    e.preventDefault();
+    try {
+      await base.initializedApp
+        .auth()
+        .createUserWithEmailAndPassword(
+          this.state.user.email,
+          this.state.user.password
+        );
+
+      base.initializedApp.auth().currentUser.updateProfile({
+        displayName: this.state.user.firstName + " " + this.state.user.lastName,
+      });
+
+      this.setState({
+        user: {
+          ...this.state.user,
+          referralCode: base.initializedApp.auth().currentUser.uid, //uid is a unique id created by firebase for each user
+        },
+      });
+
+      this.props.toggleLoginState(true);
+
+      //then add user
+      this.props.addUser(this.state.user);
+      //and redirect to account page
+      this.setState({ redirect: true });
+
+      let userLink =
+        "/account/" +
+        this.state.user.firstName +
+        "/" +
+        this.state.user.referralCode;
+      this.props.history.push(userLink);
+    } catch (error) {
+      this.props.toggleLoginState(false);
+      this.setState({ redirect: false });
+      alert(error.message);
     }
 
     handleRegister = (event) => {

@@ -5,7 +5,7 @@ import "./About.css";
 
 export default function About() {
   return (
-    <div>
+    <div className="about">
       <div className="left">
         <div className="mission">
           <AboutCard />
