@@ -12,9 +12,13 @@
 .header_logo a{
     color: white;
     text-decoration: none;
-    font-size: 2.0em;
     float: right;
-    padding: 0 100px;
+    padding-right: 100px;
+}
+
+img {
+    width: 150px;
+    height: auto;
 }
 
 .header_nav {

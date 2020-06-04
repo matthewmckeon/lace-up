@@ -1,0 +1,32 @@
+.list {
+    list-style: none;
+    display: flex;
+    /* text-align: center; */
+    justify-content: space-between;
+}
+
+li {
+    padding: 0 5%;
+    /* text-align: center; */
+}
+
+.facebook {
+    width: 75px;
+    height: auto;
+}
+
+.logoSticker {
+    height: 50px;
+    width: auto;
+    padding-top: 20px;
+}
+
+.tshirt {
+    width: 100px;
+    height: auto;
+}
+
+.sneaker {
+    width: 100px;
+    height: auto;
+}
