@@ -31,8 +31,8 @@ export default function SimpleCard(props) {
 
   return (
     <Card className={classes.root}>
-      <CardContent style={{ textAlign: "center" }}>
-        <h1>{props.award.title}</h1>
+      <CardContent>
+        <h1 style={{ textAlign: "center" }}>{props.award.title}</h1>
         <p>{props.award.descr}</p>
         {props.award.title === "10 Referrals" ? (
           <FacebookIcon
@@ -63,17 +63,17 @@ export default function SimpleCard(props) {
             alt="shirt"
           />
         ) : (
-          <img
-            style={{
-              width: "32%",
-              height: "auto",
-              margin: "auto",
-              display: "block",
-            }}
-            src={require("../images/allbirds.jpg")}
-            alt="allbird"
-          />
-        )}
+                <img
+                  style={{
+                    width: "32%",
+                    height: "auto",
+                    margin: "auto",
+                    display: "block",
+                  }}
+                  src={require("../images/allbirds.jpg")}
+                  alt="allbird"
+                />
+              )}
       </CardContent>
     </Card>
   );

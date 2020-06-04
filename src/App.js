@@ -27,6 +27,19 @@ export default class App extends Component {
   //https://coderjourney.com/tutorials/how-to-integrate-react-with-firebase/
   addUser = (user) => {
     const users = { ...this.state.users };
+
+    if(user.givenReferralCode) {
+      let newMyReferralList = users[user.givenReferralCode].myReferrals
+      if(newMyReferralList[0]==="no referrals yet") {
+        newMyReferralList[0] = (user.referralCode)
+      } else {
+        newMyReferralList.push(user.referralCode)
+      }
+      users[user.givenReferralCode] = {
+      myReferrals: newMyReferralList
+    }
+    }
+
     users[user.referralCode] = {
       firstName: user.firstName,
       lastName: user.lastName,
@@ -34,6 +47,8 @@ export default class App extends Component {
       referralCode: user.referralCode,
       score: 0,
       givenReferralCode: user.givenReferralCode,
+      myReferrals: user.myReferrals,
+      dateSignedUp: user.dateSignedUp
     };
     this.setState({ users });
 
@@ -82,10 +97,16 @@ export default class App extends Component {
           <div className="App">
             <Switch>
               <Route path="/faq" render={(props) => <Faq {...props} />} />
-              <Route path="/about" render={(props) => <About {...props} />} />
+              <Route path="/about" render={(props) => 
+                <About />} 
+              />
               <Route
                 path="/account/:firstName/:userId"
-                render={(props) => <Account {...props} />}
+                render={(props) => 
+                <Account 
+                    users = {this.state.users}
+                    {...props} 
+                  />}
               />
               <Route
                 path="/login"
@@ -114,11 +135,7 @@ export default class App extends Component {
                   <Logout toggleLoginState={this.toggleLoginState} {...props} />
                 )}
               />
-              <Route
-                exact
-                path="/"
-                render={(props) => <HowItWorks {...props} />}
-              />
+              <Route path="/" render={(props) => <HowItWorks isLoggedIn = {this.state.isLoggedIn} {...props} />} />
             </Switch>
           </div>
         </Router>

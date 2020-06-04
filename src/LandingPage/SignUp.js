@@ -14,54 +14,80 @@ import { HashRouter as Redirect } from "react-router-dom";
 import "./Login.css";
 
 export default class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        referralCode: "", //unique code for each new user
-        hasCode: false,
-        givenReferralCode: "", //if has a referral code from somebody else
-      },
-      redirect: false,
-    };
-  }
-
-  handleRegister = (event) => {
-    this.setState({
-      user: {
-        ...this.state.user,
-        [event.target.name]: event.target.value,
-      },
-    });
-  };
-
-  registerUser = async (e) => {
-    e.preventDefault();
-
-    if (this.props.users[this.state.user.givenReferralCode]) {
-      try {
-        await base.initializedApp
-          .auth()
-          .createUserWithEmailAndPassword(
-            this.state.user.email,
-            this.state.user.password
-          );
-
-        base.initializedApp.auth().currentUser.updateProfile({
-          displayName:
-            this.state.user.firstName + " " + this.state.user.lastName,
-        });
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: {
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: "",
+                referralCode: "", //unique code for each new user
+                hasCode: false,
+                givenReferralCode: "", //if has a referral code from somebody else
+                myReferrals: ["no referrals yet"],
+                dateSignedUp: Date().substring(4,15)
+            },
+            redirect: false,
+        };
+    }
         this.setState({
           user: {
             ...this.state.user,
             referralCode: base.initializedApp.auth().currentUser.uid, //uid is a unique id created by firebase for each user
           },
         });
+    };
+
+    registerUser = async (e) => {
+        e.preventDefault();
+
+        if (this.props.users[this.state.user.givenReferralCode] || !this.state.givenReferralCode) {
+            try {
+                await base.initializedApp.auth().createUserWithEmailAndPassword(
+                    this.state.user.email, this.state.user.password
+                )
+
+                base.initializedApp.auth().currentUser.updateProfile({
+                    displayName: this.state.user.firstName + " " + this.state.user.lastName,
+                })
+
+                this.setState({
+                    user: {
+                        ...this.state.user,
+                        referralCode: base.initializedApp.auth().currentUser.uid //uid is a unique id created by firebase for each user
+                    }
+                })
+
+                this.props.toggleLoginState(true)
+
+                //then add user 
+                this.props.addUser(this.state.user)
+                //and redirect to account page
+                this.setState({ redirect: true })
+
+                let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
+                this.props.history.push(userLink);
+
+            } catch (error) {
+                this.props.toggleLoginState(false)
+                this.setState({ redirect: false })
+                alert(error.message)
+
+            }
+        } else {
+            alert("Please use valid referral code.")
+        }
+    }
+
+    handleInputCode = () => {
+        this.setState(
+            {
+                user: {
+                    ...this.state.user,
+                    hasCode: !this.state.user.hasCode
+                }
+            })
 
         this.props.toggleLoginState(true);
 

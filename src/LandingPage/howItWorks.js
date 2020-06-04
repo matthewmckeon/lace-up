@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./LandingPage.css";
 import Card from "./Card";
 import Card1 from "./Card1";
@@ -6,31 +7,43 @@ import Card1 from "./Card1";
 import { Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { PROGRAMS } from "./Programs.js";
+import { base } from '../config/Firebase';
 import { AWARDS } from "./Awards.js";
+import { RULES } from "./Rules.js";
 
 const useStyles = makeStyles({
   gridContainer: {
     paddingLeft: "60px",
     paddingRight: "60px",
-    paddingTop: "10px",
-    paddingBottom: "50px",
+    paddingTop: "30px",
+    paddingBottom: "30px",
     width: "99vw",
   },
 });
 
-export default function HowItWorks() {
+export default function HowItWorks(props) {
   const classes = useStyles();
-  const classes2 = useStyles();
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+
+  base.initializedApp.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      setIsLoggedIn(true)
+    }
+    else {
+      setIsLoggedIn(false)
+    }
+
+  })
 
   return (
     <div className="landing">
       <div className="Grid">
         <Grid container spacing={1} className={classes.gridContainer}>
-          {PROGRAMS.map((program, index) => {
+          {RULES.map((rule, index) => {
             return (
               <Grid key={index} item xs={4}>
-                <Card program={program} />
+                <Card rule={rule} />
               </Grid>
             );
           })}
@@ -45,20 +58,23 @@ export default function HowItWorks() {
             );
           })}
         </Grid>
-
-        <div
-          style={{ paddingBottom: "10px", backgroundColor: "black" }}
-          className="buttons"
-        >
-          <h1 style={{ color: "white" }}>Sign Up Now!</h1>
-          <Button className="login" variant="contained">
-            <a href="/login">Login</a>
-          </Button>
-          <div className="divider" />
-          <Button className="signup" variant="contained">
-            <a href="/register">Sign Up</a>
-          </Button>
-        </div>
+        {(isLoggedIn) ?
+          <div></div>
+          :
+          <div
+            style={{ paddingBottom: "10px", backgroundColor: "black" }}
+            className="buttons"
+          >
+            <h1 style={{ color: "white" }}>Sign Up Now!</h1>
+            <Button className="login" variant="contained">
+              <a href="/login">Login</a>
+            </Button>
+            <div className="divider" />
+            <Button className="signup" variant="contained">
+              <a href="/register">Sign Up</a>
+            </Button>
+          </div>
+        }
       </div>
     </div>
   );
