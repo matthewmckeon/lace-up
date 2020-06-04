@@ -31,6 +31,7 @@ const SideBar = props => {
                         <li><a href={userLink}>
                             {`${currentUser.displayName}'s Account`}
                         </a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="/about">About</a></li>
                         <li><a href='/faq'>FAQs</a></li>
                         <li><Button
@@ -43,6 +44,7 @@ const SideBar = props => {
                     :
 
                     < div >
+                        <li><a href="/">Home</a></li>
                         <li><a href="/about">About</a></li>
                         <li><a href='/faq'>FAQs</a></li>
                         {/* <li><a href='/login'>Login</a></li>
