@@ -50,7 +50,6 @@ export default class Login extends Component {
                     firstName: base.initializedApp.auth().currentUser.displayName
                 }
             })
-            this.props.updateCurrentUser(currentUserCode) //update current user to app
 
             //https://scotch.io/courses/using-react-router-4/authentication-with-redirect
             let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;

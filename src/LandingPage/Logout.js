@@ -13,9 +13,10 @@ export default class Logout extends Component {
     }
 
     logoutUser = () => {
+        this.setState({ wantsToLogOut: true })
+        this.props.history.push('/');
         this.props.toggleLoginState(false);
         base.initializedApp.auth().signOut();
-        this.setState({ wantsToLogOut: true })
     }
 
     render() {
@@ -23,11 +24,16 @@ export default class Logout extends Component {
             (this.state.wantsToLogOut) ?
                 <Redirect to="/" />
                 :
-                <Button
-                    color="secondary"
-                    onClick={this.logoutUser}
-                > Log Out
+                <div>
+                    <h3>Are you sure you want to Log Out?</h3>
+                    <Button
+                        color="secondary"
+                        variant="contained"
+                        onClick={this.logoutUser}
+                        style={{ marginBottom: 5 }}
+                    > Log Out
             </Button>
+                </div>
         )
     }
 }

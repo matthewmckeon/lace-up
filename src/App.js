@@ -13,6 +13,7 @@ import { base } from "./config/Firebase";
 import firebase from 'firebase';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -47,6 +48,8 @@ export default class App extends Component {
           referredPrevScore = snap.val().score
         }
       })
+
+      //https://medium.com/@hasangi/writing-deleting-and-updating-data-in-firebase-realtime-database-with-javascript-f26113ec8c93
       referredPrevScore += 1 //update the person whom the referred code belongs to by adding 1
       firebase.database().ref(referralLink).update({ score: referredPrevScore })
     }
@@ -68,19 +71,12 @@ export default class App extends Component {
     this.setState({ isLoggedIn: isLoggedIn });
   };
 
-  updateCurrentUser = (userCode) => {
-    this.setState({ currentUserCode: userCode });
-  };
-
   //https://learnwithparam.com/blog/dynamic-pages-in-react-router/
   render() {
 
     return (
       <div>
         <NavBar
-          isLoggedIn={this.state.isLoggedIn}
-          currentUserCode={this.state.currentUserCode}
-          users={this.users}
           toggleLoginState={this.toggleLoginState}
 
         />
@@ -99,8 +95,6 @@ export default class App extends Component {
                   <Login
                     toggleLoginState={this.toggleLoginState}
                     {...props}
-                    updateCurrentUser={this.updateCurrentUser}
-                    {...props}
                   />
                 )}
               />
@@ -112,8 +106,6 @@ export default class App extends Component {
                     {...props}
                     addUser={this.addUser}
                     {...props}
-                    updateCurrentUser={this.updateCurrentUser}
-                    {...props}
                   />
                 )}
               />
@@ -122,8 +114,6 @@ export default class App extends Component {
                 render={(props) => (
                   <Logout
                     toggleLoginState={this.toggleLoginState}
-                    {...props}
-                    currentUserCode={this.state.currentUserCode}
                     {...props}
                   />
                 )}

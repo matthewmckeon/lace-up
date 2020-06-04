@@ -37,7 +37,7 @@ export default function HowItWorks() {
         >
           <a href='/login'>Login</a>
         </Button>
-        <div class="divider" />
+        <div className="divider" />
         <Button
           className='signup'
           variant="contained"
