@@ -1,9 +1,14 @@
 import React, { Component } from "react";
-import { base } from '../config/Firebase';
+import { base } from "../config/Firebase";
 import {
-    Typography, Button, FormControl, Input, InputLabel,
-    FormControlLabel, Checkbox
-} from '@material-ui/core'
+    Typography,
+    Button,
+    FormControl,
+    Input,
+    InputLabel,
+    FormControlLabel,
+    Checkbox,
+} from "@material-ui/core";
 
 import { BrowserRouter as Redirect } from "react-router-dom";
 import "./Login.css";
@@ -22,63 +27,53 @@ export default class SignUp extends Component {
                 givenReferralCode: "", //if has a referral code from somebody else
             },
             redirect: false,
-        }
+        };
     }
 
     handleRegister = (event) => {
         this.setState({
             user: {
                 ...this.state.user, //https://github.com/reactstrap/reactstrap/issues/522
-                [event.target.name]: event.target.value
-            }
-        })
-        console.log(event.target.name, event.target.value)
-    }
-
-    formatEmail = (email) => {
-        let indexAt = email.indexOf("@")
-        let emailKey = email.substring(0, indexAt)
-        return emailKey
-    }
+                [event.target.name]: event.target.value,
+            },
+        });
+    };
 
     registerUser = async (e) => {
-        console.log(this.props.users)
-        console.log(this.state)
-        console.log('hi')
         e.preventDefault();
-       
-        if(this.props.users[this.state.user.givenReferralCode]) {
+
+        if (this.props.users[this.state.user.givenReferralCode]) {
             try {
                 await base.initializedApp.auth().createUserWithEmailAndPassword(
                     this.state.user.email, this.state.user.password
                 )
-    
+
                 base.initializedApp.auth().currentUser.updateProfile({
                     displayName: this.state.user.firstName + " " + this.state.user.lastName,
                 })
-    
+
                 this.setState({
                     user: {
                         ...this.state.user,
                         referralCode: base.initializedApp.auth().currentUser.uid //uid is a unique id created by firebase for each user
                     }
                 })
-    
+
                 this.props.toggleLoginState(true)
-    
+
                 //then add user 
                 this.props.addUser(this.state.user)
                 //and redirect to account page
                 this.setState({ redirect: true })
-    
+
                 let userLink = '/account/' + this.state.user.firstName + "/" + this.state.user.referralCode;
                 this.props.history.push(userLink);
-    
+
             } catch (error) {
                 this.props.toggleLoginState(false)
                 this.setState({ redirect: false })
                 alert(error.message)
-    
+
             }
         } else {
             alert("Please use valid referral code.")
@@ -93,6 +88,7 @@ export default class SignUp extends Component {
                     hasCode: !this.state.user.hasCode
                 }
             })
+
     }
 
     render() {
@@ -106,7 +102,7 @@ export default class SignUp extends Component {
 
                         <Typography style={{ fontSize: 30 }}>
                             REGISTER
-                </Typography>
+                        </Typography>
                         <form onSubmit={e => e.preventDefault()}>
                             <FormControl required>
                                 <InputLabel htmlFor="firstName">First Name</InputLabel>
@@ -158,7 +154,7 @@ export default class SignUp extends Component {
                                 color="secondary"
                                 onClick={e => this.registerUser(e)}
                             > Register
-                    </Button>
+                        </Button>
                             <br />
                             <FormControlLabel
                                 control={

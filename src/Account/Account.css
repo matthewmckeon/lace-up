@@ -1,6 +1,7 @@
 .refer-button {
   text-align: center;
   margin: 2em;
+  padding-bottom: 5em;
 }
 .welcome {
   color: #ffb20f;
@@ -14,13 +15,13 @@
 }
 
 .left {
-  float: left;
-  width: 80%;
+  width: 100%;
   background-image: url(https://images.unsplash.com/photo-1465479423260-c4afc24172c6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
 }
 
 .right {
   display: flex;
-  float: left;
   width: 20%;
+  z-index: 10;
+  position: absolute;
 }

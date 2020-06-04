@@ -24,19 +24,20 @@ export default function AboutCard() {
       <CardContent>
         <h3>Our Mission</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
+          LaceUp started with a simple goal in mind: bringing environmentally
+          concious shoes into a wasteful market. The US generates 35% of waste
+          in packaging alone, and we at LaceUp strive to lower those numbers.
+          With eco-concious "one-piece" packaging, made from bamboo reed in
+          place of plastic, soy-based inks instead of chemicals, and recycled
+          cardboard, our footprint in the environment is barely there. <br />
           <br />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
+          We pride ourselves on the 3 R's: Reuse, Repurpose, and Recycle, and it
+          shows in our sneakers. We use resuable, recycled, and natural material
+          to craft all of our shoes, all while preserving quality and comfort.
+          Recycled plastic becomes a pair of LaceUp laces, while natural
+          materials like our bamboo insoles and wool fabric become the base of
+          your shoe. We aren't just a shoe company, we're an environmentally
+          concious movement.
         </p>
       </CardContent>
     </Card>

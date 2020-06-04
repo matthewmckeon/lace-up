@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     minWidth: 200,
+    minHeight: 400,
     borderRadius: 10,
   },
   bullet: {
@@ -24,15 +25,23 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard() {
+export default function SimpleCard(props) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <h1>Loren Ipsum</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+        <h1>{props.program.title}</h1>
+        <p>{props.program.descr}</p>
+        {(props.program.title.includes("Donate")) ?
+          <img style={{ width: "70%", height: "auto" }} src={require('../images/kids.png')} alt="kids" />
+          :
+          (props.program.title.includes("Reducing")) ?
+            <img style={{ width: "50%", height: "auto" }} src={require('../images/recycle.jpg')} alt="recycle" />
+            :
+            <img style={{ width: "66%", height: "auto" }} src={require('../images/repair.jpg')} alt="repair" />
+        }
       </CardContent>
     </Card>
   );
