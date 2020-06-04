@@ -27,13 +27,27 @@ export default class App extends Component {
   //https://coderjourney.com/tutorials/how-to-integrate-react-with-firebase/
   addUser = (user) => {
     const users = { ...this.state.users };
+
+    if(user.givenReferralCode) {
+      let newMyReferralList = users[user.givenReferralCode].myReferrals
+      if(newMyReferralList[0]==="no referrals yet") {
+        newMyReferralList[0] = (user.referralCode)
+      } else {
+        newMyReferralList.push(user.referralCode)
+      }
+      users[user.givenReferralCode] = {
+      myReferrals: newMyReferralList
+    }
+    }
+
     users[user.referralCode] = {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
       referralCode: user.referralCode,
       score: 0,
-      givenReferralCode: user.givenReferralCode
+      givenReferralCode: user.givenReferralCode,
+      myReferrals: user.myReferrals
     };
     this.setState({ users });
 
@@ -84,10 +98,16 @@ export default class App extends Component {
           <div className="App">
             <Switch>
               <Route path="/faq" render={(props) => <Faq {...props} />} />
-              <Route path="/about" render={(props) => <About {...props} />} />
+              <Route path="/about" render={(props) => 
+                <About />} 
+              />
               <Route
                 path="/account/:firstName/:userId"
-                render={(props) => <Account {...props} />}
+                render={(props) => 
+                <Account 
+                    users = {this.state.users}
+                    {...props} 
+                  />}
               />
               <Route
                 path="/login"
