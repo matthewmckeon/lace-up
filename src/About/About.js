@@ -3,7 +3,19 @@ import AboutCard from "./AboutCard";
 import ProgramsCard from "./ProgramsCard";
 import "./About.css";
 
+import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { PROGRAMS } from "./Programs.js";
+
+const useStyles = makeStyles({
+  gridContainer: {
+    width: "90vw",
+  },
+});
+
 export default function About() {
+  const classes = useStyles();
+
   return (
     <div className="about">
       <div className="leftcolumn">
@@ -11,7 +23,17 @@ export default function About() {
           <AboutCard />
         </div>
         <div className="programs">
-          <ProgramsCard />
+          <Grid container spacing={1} className={classes.gridContainer}>
+            {PROGRAMS.map((program, index) => {
+              return (
+                <Grid key={index} item xs={4}>
+                  <ProgramsCard
+                    style={{}}
+                    key={index} program={program} />
+                </Grid>
+              )
+            })}
+          </Grid>
         </div>
       </div>
       <div className="image-container">
