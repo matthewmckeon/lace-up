@@ -143,7 +143,7 @@ export default class App extends Component {
                   />
                 )}
               />
-              <Route path="/" render={(props) => <HowItWorks {...props} />} />
+              <Route path="/" render={(props) => <HowItWorks isLoggedIn = {this.state.isLoggedIn} {...props} />} />
               {/* landing page before log in*/}
             </Switch>
           </div>

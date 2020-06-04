@@ -19,10 +19,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HowItWorks() {
+export default function HowItWorks(props) {
   const classes = useStyles();
   const classes2 = useStyles();
-
+  console.log(props)
   return (
     <div className="landing">
       <div className="Grid">
@@ -46,7 +46,7 @@ export default function HowItWorks() {
           })}
         </Grid>
 
-        <div
+        {props.isLoggedIn ? null : <div
           style={{ paddingBottom: "10px" }}
           className="buttons"
         >
@@ -58,7 +58,7 @@ export default function HowItWorks() {
           <button className="signup" variant="contained" style={{ color: "white", textDecoration: 'none' }}>
             <a href="/register">Sign Up</a>
           </button>
-        </div>
+        </div>}
 
       </div>
     </div>
