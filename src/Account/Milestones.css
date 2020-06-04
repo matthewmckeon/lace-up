@@ -4,10 +4,25 @@
 }
 
 .ten {
-  object-position: right;
-
+  position: relative;
+  left: 8vw;
+  bottom: 8vh;
 }
 
 .twenty-five {
+  position: relative;
+  left: 20vw;
+  bottom: 8vh;
+}
 
+.fifty {
+  position: relative;
+  left: 41vw;
+  bottom: 8vh;
+}
+
+.one-hundred {
+  position: relative;
+  left: 79vw;
+  bottom: 8vh;
 }
