@@ -47,7 +47,8 @@ export default class App extends Component {
       referralCode: user.referralCode,
       score: 0,
       givenReferralCode: user.givenReferralCode,
-      myReferrals: user.myReferrals
+      myReferrals: user.myReferrals,
+      dateSignedUp: user.dateSignedUp
     };
     this.setState({ users });
 
