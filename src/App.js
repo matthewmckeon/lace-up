@@ -12,7 +12,7 @@ import MainFooter from "./Footer/MainFooter";
 import { base } from "./config/Firebase";
 import firebase from "firebase";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 //BrowserRouter in App.js, Login.js, SignUp, and Account!!!!!!!!!!!!!
 
 export default class App extends Component {
@@ -94,11 +94,11 @@ export default class App extends Component {
     return (
       <div>
         <NavBar toggleLoginState={this.toggleLoginState} />
-        <Router basename="/lace-up">
+        <Router basename={process.env.PUBLIC_URL}>
           <div className="App">
             <Switch>
-              <Route path="/faq" render={(props) => <Faq {...props} />} />
-              <Route path="/about" render={(props) => <About />} />
+              <Route exact path="/faq" render={(props) => <Faq {...props} />} />
+              <Route exact path="/about" render={(props) => <About />} />
               <Route
                 path="/account/:firstName/:userId"
                 render={(props) => (
@@ -106,12 +106,14 @@ export default class App extends Component {
                 )}
               />
               <Route
+                exact
                 path="/login"
                 render={(props) => (
                   <Login toggleLoginState={this.toggleLoginState} {...props} />
                 )}
               />
               <Route
+                exact
                 path="/register"
                 render={(props) => (
                   <SignUp
@@ -127,18 +129,19 @@ export default class App extends Component {
                 )}
               />
               <Route
+                exact
                 path="/log-out"
                 render={(props) => (
                   <Logout toggleLoginState={this.toggleLoginState} {...props} />
                 )}
               />
               <Route
+                exact
                 path="/"
                 render={(props) => (
                   <HowItWorks isLoggedIn={this.state.isLoggedIn} {...props} />
                 )}
               />
-              {/* landing page before log in*/}
             </Switch>
           </div>
         </Router>
