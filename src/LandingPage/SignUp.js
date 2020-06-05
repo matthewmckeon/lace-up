@@ -111,101 +111,101 @@ export default class SignUp extends Component {
         {this.state.redirect ? (
           <Redirect to={newAccountLink} />
         ) : (
-          <div className="formBody">
-            <Typography style={{ fontSize: 30 }}>REGISTER</Typography>
-            <form onSubmit={(e) => e.preventDefault()}>
-              <FormControl required>
-                <InputLabel htmlFor="firstName">First Name</InputLabel>
-                <Input
-                  id="firstName"
-                  name="firstName"
-                  autoComplete="off"
-                  autoFocus
-                  value={this.state.user.firstName || ""}
-                  onChange={(e) => this.handleRegister(e)}
-                />
-              </FormControl>
-              <br />
-              <FormControl required>
-                <InputLabel htmlFor="lastName">Last Name</InputLabel>
-                <Input
-                  id="lastName"
-                  name="lastName"
-                  autoComplete="off"
-                  value={this.state.user.lastName || ""}
-                  onChange={(e) => this.handleRegister(e)}
-                />
-              </FormControl>
-              <br />
-              <FormControl required>
-                <InputLabel htmlFor="email">Email Address</InputLabel>
-                <Input
-                  id="email"
-                  name="email"
-                  autoComplete="off"
-                  value={this.state.user.email}
-                  onChange={(e) => this.handleRegister(e)}
-                />
-              </FormControl>
-              <br />
-              <FormControl required>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="off"
-                  value={this.state.user.password}
-                  onChange={(e) => this.handleRegister(e)}
-                />
-              </FormControl>
-              <br />
-              <Button
-                style={{ marginTop: 15 }}
-                type="submit"
-                variant="contained"
-                color="secondary"
-                onClick={(e) => this.registerUser(e)}
-              >
-                {" "}
+            <div className="formBody">
+              <Typography style={{ fontSize: 30 }}>REGISTER</Typography>
+              <form onSubmit={(e) => e.preventDefault()}>
+                <FormControl required>
+                  <InputLabel htmlFor="firstName">First Name</InputLabel>
+                  <Input
+                    id="firstName"
+                    name="firstName"
+                    autoComplete="off"
+                    autoFocus
+                    value={this.state.user.firstName || ""}
+                    onChange={(e) => this.handleRegister(e)}
+                  />
+                </FormControl>
+                <br />
+                <FormControl required>
+                  <InputLabel htmlFor="lastName">Last Name</InputLabel>
+                  <Input
+                    id="lastName"
+                    name="lastName"
+                    autoComplete="off"
+                    value={this.state.user.lastName || ""}
+                    onChange={(e) => this.handleRegister(e)}
+                  />
+                </FormControl>
+                <br />
+                <FormControl required>
+                  <InputLabel htmlFor="email">Email Address</InputLabel>
+                  <Input
+                    id="email"
+                    name="email"
+                    autoComplete="off"
+                    value={this.state.user.email}
+                    onChange={(e) => this.handleRegister(e)}
+                  />
+                </FormControl>
+                <br />
+                <FormControl required>
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="off"
+                    value={this.state.user.password}
+                    onChange={(e) => this.handleRegister(e)}
+                  />
+                </FormControl>
+                <br />
+                <Button
+                  style={{ marginTop: 15 }}
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                  onClick={(e) => this.registerUser(e)}
+                >
+                  {" "}
                 Register
               </Button>
-              <br />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={this.state.user.hasCode}
-                    onChange={() => this.handleInputCode()}
-                    name="hasCode"
-                    color="primary"
-                  />
-                }
-                label="Do you have a referral code?"
-              />
-              {this.state.user.hasCode ? (
-                <div>
-                  <FormControl>
-                    <InputLabel htmlFor="referralCodeGiven">
-                      Referral Code
-                    </InputLabel>
-                    <Input
-                      id="givenReferralCode"
-                      name="givenReferralCode"
-                      type="text"
-                      autoComplete="off"
-                      value={this.state.user.givenReferralCode}
-                      onChange={(e) => this.handleRegister(e)}
-                      style={{ marginBottom: 5 }}
+                <br />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={this.state.user.hasCode}
+                      onChange={() => this.handleInputCode()}
+                      name="hasCode"
+                      color="primary"
                     />
-                  </FormControl>
-                  <br />
-                </div>
-              ) : (
-                <div></div>
-              )}
-            </form>
-          </div>
-        )}
+                  }
+                  label="Do you have a referral code?"
+                />
+                {this.state.user.hasCode ? (
+                  <div>
+                    <FormControl>
+                      <InputLabel htmlFor="referralCodeGiven">
+                        Referral Code
+                    </InputLabel>
+                      <Input
+                        id="givenReferralCode"
+                        name="givenReferralCode"
+                        type="text"
+                        autoComplete="off"
+                        value={this.state.user.givenReferralCode}
+                        onChange={(e) => this.handleRegister(e)}
+                        style={{ marginBottom: 5 }}
+                      />
+                    </FormControl>
+                    <br />
+                  </div>
+                ) : (
+                    <div></div>
+                  )}
+              </form>
+            </div>
+          )}
       </div>
     );
   }
