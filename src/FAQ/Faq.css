@@ -2,13 +2,20 @@
   background-image: url(https://images.unsplash.com/photo-1542325059222-f8a794ccf28d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80);
   background-position: center;
   background-size: cover;
+  padding-top: 3%;
+}
+
+.faq-content {
+  width: 85%;
+  margin: auto;
+  padding-bottom: 30px;
 }
 
 .faqHeader {
   color: white;
   background-color: #124559;
-  height: 2em;
-  padding-top: 13px;
+  padding: 20px;
+  text-align: center;
 }
 
 .faqHeader1 {
