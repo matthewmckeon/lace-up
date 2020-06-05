@@ -10,9 +10,9 @@ import HowItWorks from "./LandingPage/howItWorks.js";
 import MainFooter from "./Footer/MainFooter";
 
 import { base } from "./config/Firebase";
-import firebase from 'firebase';
+import firebase from "firebase";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 //BrowserRouter in App.js, Login.js, SignUp, and Account!!!!!!!!!!!!!
 
 export default class App extends Component {
@@ -30,15 +30,15 @@ export default class App extends Component {
     const users = { ...this.state.users };
 
     if (user.givenReferralCode) {
-      let newMyReferralList = users[user.givenReferralCode].myReferrals
+      let newMyReferralList = users[user.givenReferralCode].myReferrals;
       if (newMyReferralList[0] === "no referrals yet") {
-        newMyReferralList[0] = (user.referralCode)
+        newMyReferralList[0] = user.referralCode;
       } else {
-        newMyReferralList.push(user.referralCode)
+        newMyReferralList.push(user.referralCode);
       }
       users[user.givenReferralCode] = {
-        myReferrals: newMyReferralList
-      }
+        myReferrals: newMyReferralList,
+      };
     }
 
     users[user.referralCode] = {
@@ -49,35 +49,37 @@ export default class App extends Component {
       score: 0,
       givenReferralCode: user.givenReferralCode,
       myReferrals: user.myReferrals,
-      dateSignedUp: user.dateSignedUp
+      dateSignedUp: user.dateSignedUp,
     };
     this.setState({ users });
 
-    let referredPrevScore = 0
+    let referredPrevScore = 0;
     if (user.hasCode) {
       //then update the score of the person with the given code
-      let referralLink = "/users/" + user.givenReferralCode
+      let referralLink = "/users/" + user.givenReferralCode;
 
-      let referredRef = firebase.database().ref(referralLink)
-      referredRef.once('value', snap => {
+      let referredRef = firebase.database().ref(referralLink);
+      referredRef.once("value", (snap) => {
         if (snap.val()) {
-          referredPrevScore = snap.val().score
+          referredPrevScore = snap.val().score;
         }
-      })
+      });
 
       //https://medium.com/@hasangi/writing-deleting-and-updating-data-in-firebase-realtime-database-with-javascript-f26113ec8c93
-      referredPrevScore += 1 //update the person whom the referred code belongs to by adding 1
-      firebase.database().ref(referralLink).update({ score: referredPrevScore })
+      referredPrevScore += 1; //update the person whom the referred code belongs to by adding 1
+      firebase
+        .database()
+        .ref(referralLink)
+        .update({ score: referredPrevScore });
     }
-  }
+  };
 
   componentDidMount = () => {
     this.usersRef = base.syncState("users", {
       context: this,
       state: "users",
     });
-
-  }
+  };
 
   componentWillUnmount() {
     base.removeBinding(this.usersRef);
@@ -89,35 +91,24 @@ export default class App extends Component {
 
   //https://learnwithparam.com/blog/dynamic-pages-in-react-router/
   render() {
-
     return (
       <div>
-        <NavBar
-          toggleLoginState={this.toggleLoginState}
-
-        />
+        <NavBar toggleLoginState={this.toggleLoginState} />
         <Router basename="/">
           <div className="App">
             <Switch>
               <Route path="/faq" render={(props) => <Faq {...props} />} />
-              <Route path="/about" render={(props) =>
-                <About />}
-              />
+              <Route path="/about" render={(props) => <About />} />
               <Route
                 path="/account/:firstName/:userId"
-                render={(props) =>
-                  <Account
-                    users={this.state.users}
-                    {...props}
-                  />}
+                render={(props) => (
+                  <Account users={this.state.users} {...props} />
+                )}
               />
               <Route
                 path="/login"
                 render={(props) => (
-                  <Login
-                    toggleLoginState={this.toggleLoginState}
-                    {...props}
-                  />
+                  <Login toggleLoginState={this.toggleLoginState} {...props} />
                 )}
               />
               <Route
@@ -138,13 +129,15 @@ export default class App extends Component {
               <Route
                 path="/log-out"
                 render={(props) => (
-                  <Logout
-                    toggleLoginState={this.toggleLoginState}
-                    {...props}
-                  />
+                  <Logout toggleLoginState={this.toggleLoginState} {...props} />
                 )}
               />
-              <Route path="/" render={(props) => <HowItWorks isLoggedIn={this.state.isLoggedIn} {...props} />} />
+              <Route
+                path="/"
+                render={(props) => (
+                  <HowItWorks isLoggedIn={this.state.isLoggedIn} {...props} />
+                )}
+              />
               {/* landing page before log in*/}
             </Switch>
           </div>
