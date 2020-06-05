@@ -1,26 +1,25 @@
-import React from 'react';
-import './SideBar.css'
+import React from "react";
+import "./SideBar.css";
 
 import { base } from '../config/Firebase';
 import { Button } from '@material-ui/core';
 import { Link } from "react-router-dom";
 
-const SideBar = props => {
-    const [userLogged, setUserLogged] = React.useState(false)
-    const [userLink, setUserLink] = React.useState("")
-    const [currentUser, setUser] = React.useState({})
+const SideBar = (props) => {
+  const [userLogged, setUserLogged] = React.useState(false);
+  const [userLink, setUserLink] = React.useState("");
+  const [currentUser, setUser] = React.useState({});
 
-    base.initializedApp.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            setUserLogged(true)
-            let newUserLink = '/account/' + user.displayName + "/" + user.uid
-            setUserLink(newUserLink);
-            setUser(user);
-        }
-        else {
-            setUserLogged(false)
-        }
-    })
+  base.initializedApp.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      setUserLogged(true);
+      let newUserLink = "/account/" + user.displayName + "/" + user.uid;
+      setUserLink(newUserLink);
+      setUser(user);
+    } else {
+      setUserLogged(false);
+    }
+  });
 
     return (
         <nav className='side-bar'>
