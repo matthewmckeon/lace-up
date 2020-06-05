@@ -94,7 +94,7 @@ export default class App extends Component {
     return (
       <div>
         <NavBar toggleLoginState={this.toggleLoginState} />
-        <Router basename="/">
+        <Router basename="/lace-up">
           <div className="App">
             <Switch>
               <Route path="/faq" render={(props) => <Faq {...props} />} />
