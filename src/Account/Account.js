@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Progress from "./Progress.js";
 import ProgressStats from "./ProgressStats.js";
 import ReferralHistory from "./ReferralHistory";
+import ReferralLeaderboard from "./ReferralLeaderboard";
 
 import FriendButton from "./FriendButton.js";
 import Milestones from "./Milestones.js";
@@ -60,6 +61,10 @@ export default function Account(props) {
           <FriendButton code={props.match.params.userId} />
         </div>
         <ReferralHistory
+          users={props.users}
+          currentCode={props.match.params.userId}
+        />
+        <ReferralLeaderboard
           users={props.users}
           currentCode={props.match.params.userId}
         />
