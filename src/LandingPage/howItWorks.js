@@ -11,6 +11,8 @@ import { base } from '../config/Firebase';
 import { AWARDS } from "./Awards.js";
 import { RULES } from "./Rules.js";
 
+import { Link } from "react-router-dom";
+
 const useStyles = makeStyles({
   gridContainer: {
     paddingLeft: "60px",
@@ -67,11 +69,11 @@ export default function HowItWorks(props) {
           >
             <h1 style={{ color: "white" }}>Sign Up Now!</h1>
             <Button className="login" variant="contained">
-              <a href="/login">Login</a>
+              <Link to="/login">Login</Link>
             </Button>
             <div className="divider" />
             <Button className="signup" variant="contained">
-              <a href="/register">Sign Up</a>
+              <Link to="/register">Sign Up</Link>
             </Button>
           </div>
         }
