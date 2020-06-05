@@ -3,6 +3,7 @@ import './SideBar.css'
 
 import { base } from '../config/Firebase';
 import { Button } from '@material-ui/core';
+import { Link } from "react-router-dom";
 
 const SideBar = props => {
     const [userLogged, setUserLogged] = React.useState(false)
@@ -26,25 +27,25 @@ const SideBar = props => {
             <ul>
                 {(userLogged) ?
                     < div >
-                        <li><a href={userLink}>
+                        <li><Link to={userLink}>
                             {`My Account`}
-                        </a></li>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href='/faq'>FAQs</a></li>
+                        </Link></li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to='/faq'>FAQs</Link></li>
                         <li><Button
                             variant="contained"
                             color="secondary"
-                        ><a href='/log-out'>Log Out</a></Button>
+                        ><Link to='/log-out'>Log Out</Link></Button>
                         </li>
 
                     </div>
                     :
 
                     < div >
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href='/faq'>FAQs</a></li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to='/faq'>FAQs</Link></li>
                     </div>
 
                 }

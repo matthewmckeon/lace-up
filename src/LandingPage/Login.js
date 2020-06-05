@@ -11,7 +11,7 @@ import {
   InputLabel,
 } from "@material-ui/core";
 
-import { BrowserRouter as Redirect } from "react-router-dom";
+import { HashRouter as Redirect } from "react-router-dom";
 
 export default class Login extends Component {
   constructor(props) {
