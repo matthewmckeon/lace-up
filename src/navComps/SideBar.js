@@ -1,8 +1,9 @@
 import React from "react";
 import "./SideBar.css";
 
-import { base } from "../config/Firebase";
-import { Button } from "@material-ui/core";
+import { base } from '../config/Firebase';
+import { Button } from '@material-ui/core';
+import { Link } from "react-router-dom";
 
 const SideBar = (props) => {
   const [userLogged, setUserLogged] = React.useState(false);
@@ -20,45 +21,36 @@ const SideBar = (props) => {
     }
   });
 
-  return (
-    <nav className="side-bar">
-      <ul>
-        {userLogged ? (
-          <div>
-            <li>
-              <a href={userLink}>{`${currentUser.displayName}'s Account`}</a>
-            </li>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/about">About</a>
-            </li>
-            <li>
-              <a href="/faq">FAQs</a>
-            </li>
-            <li>
-              <Button variant="contained" color="secondary">
-                <a href="/log-out">Log Out</a>
-              </Button>
-            </li>
-          </div>
-        ) : (
-          <div>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/about">About</a>
-            </li>
-            <li>
-              <a href="/faq">FAQs</a>
-            </li>
-          </div>
-        )}
-      </ul>
-    </nav>
-  );
-};
+    return (
+        <nav className='side-bar'>
+            <ul>
+                {(userLogged) ?
+                    < div >
+                        <li><Link to={userLink}>
+                            {`My Account`}
+                        </Link></li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to='/faq'>FAQs</Link></li>
+                        <li><Button
+                            variant="contained"
+                            color="secondary"
+                        ><Link to='/log-out'>Log Out</Link></Button>
+                        </li>
+
+                    </div>
+                    :
+
+                    < div >
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to='/faq'>FAQs</Link></li>
+                    </div>
+
+                }
+            </ul >
+        </nav >
+    )
+}
 
 export default SideBar;

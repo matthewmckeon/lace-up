@@ -12,7 +12,7 @@ import MainFooter from "./Footer/MainFooter";
 import { base } from "./config/Firebase";
 import firebase from "firebase";
 
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 //BrowserRouter in App.js, Login.js, SignUp, and Account!!!!!!!!!!!!!
 
 export default class App extends Component {
@@ -93,8 +93,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <NavBar toggleLoginState={this.toggleLoginState} />
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router basename="/lace-up">
+          <NavBar toggleLoginState={this.toggleLoginState} /> 
           <div className="App">
             <Switch>
               <Route exact path="/faq" render={(props) => <Faq {...props} />} />

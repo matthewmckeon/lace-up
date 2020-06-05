@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { base } from "../config/Firebase";
 import "./Login.css";
 import { Button } from "@material-ui/core";
-import { Redirect } from "react-router-dom";
+import { HashRouter as Redirect } from "react-router-dom";
 
 export default class Logout extends Component {
   constructor(props) {
