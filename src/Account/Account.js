@@ -80,7 +80,7 @@ export default function Account(props) {
             style = {{paddingTop: "30px"}}
           >
             <ToggleButton value="history" aria-label="left aligned">
-              My Referral Hisory
+              My Referral History
             </ToggleButton>
             <ToggleButton value="leaderboard" aria-label="left aligned">
               Community Leaderboard
