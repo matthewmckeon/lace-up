@@ -85,46 +85,46 @@ export default class Login extends Component {
         {this.state.redirect ? (
           <Redirect to={userLink} />
         ) : (
-          <div className="formBody">
-            <Typography style={{ fontSize: 30 }}>SIGN IN</Typography>
-            <form onSubmit={(e) => e.preventDefault()}>
-              <FormControl required>
-                <InputLabel htmlFor="email">Email Address</InputLabel>
-                <Input
-                  id="email"
-                  name="email"
-                  autoComplete="off"
-                  autoFocus
-                  value={this.state.user.email}
-                  onChange={(e) => this.handleLogin(e)}
-                />
-              </FormControl>
-              <br />
-              <FormControl required>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="off"
-                  value={this.state.user.password}
-                  onChange={(e) => this.handleLogin(e)}
-                />
-              </FormControl>
-              <br />
-              <Button
-                style={{ marginTop: 15, marginBottom: 5 }}
-                type="submit"
-                variant="contained"
-                color="primary"
-                onClick={(e) => this.loginUser(e)}
-              >
-                {" "}
+            <div className="formBody">
+              <Typography style={{ fontSize: 30 }}>SIGN IN</Typography>
+              <form onSubmit={(e) => e.preventDefault()}>
+                <FormControl required>
+                  <InputLabel htmlFor="email">Email Address</InputLabel>
+                  <Input
+                    id="email"
+                    name="email"
+                    autoComplete="off"
+                    autoFocus
+                    value={this.state.user.email}
+                    onChange={(e) => this.handleLogin(e)}
+                  />
+                </FormControl>
+                <br />
+                <FormControl required>
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="off"
+                    value={this.state.user.password}
+                    onChange={(e) => this.handleLogin(e)}
+                  />
+                </FormControl>
+                <br />
+                <Button
+                  style={{ marginTop: 15, marginBottom: 5 }}
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  onClick={(e) => this.loginUser(e)}
+                >
+                  {" "}
                 Sign In
               </Button>
-            </form>
-          </div>
-        )}
+              </form>
+            </div>
+          )}
       </div>
     );
   }

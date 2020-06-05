@@ -23,20 +23,20 @@ export default class Logout extends Component {
     return this.state.wantsToLogOut ? (
       <Redirect to="/" />
     ) : (
-      <div className="formTot">
-        <div className="logoutCard">
-          <h3>Are you sure you want to Log Out?</h3>
-          <Button
-            color="secondary"
-            variant="contained"
-            onClick={this.logoutUser}
-            style={{ marginBottom: 5 }}
-          >
-            {" "}
+        <div className="formTot">
+          <div className="logoutCard">
+            <h3>Are you sure you want to Log Out?</h3>
+            <Button
+              color="secondary"
+              variant="contained"
+              onClick={this.logoutUser}
+              style={{ marginBottom: 5 }}
+            >
+              {" "}
             Log Out
           </Button>
+          </div>
         </div>
-      </div>
-    );
+      );
   }
 }

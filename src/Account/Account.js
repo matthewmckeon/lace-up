@@ -39,7 +39,7 @@ export default function Account(props) {
   });
 
   unsub();
-  console.log(props)
+
   return isLoggedIn ? (
     <div className="account">
       <div className="left">
@@ -51,7 +51,7 @@ export default function Account(props) {
               textAlign: "center",
             }}
           >
-            Welcome {props.users[props.match.params.userId].firstName}!
+            Welcome {props.match.params.firstName}!
           </h3>
         </div>
         <Progress progress={progress} />
@@ -66,6 +66,6 @@ export default function Account(props) {
       </div>
     </div>
   ) : (
-    <Redirect to="/login" />
-  );
+      <Redirect to="/login" />
+    );
 }

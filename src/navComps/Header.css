@@ -10,18 +10,14 @@
   padding: 6vh;
   z-index: 1;
   max-height: 20px;
+  text-align: center;
 }
 
-/* .header_logo a {
-  float: right;
-} */
-
 .logo {
-  width: 200px;
+  width: 300px;
   height: auto;
-  margin-top: -3vh;
+  margin-top: -5vh;
   position: relative;
-  float: right;
   left: -5vw;
   background-size: contain;
 }
