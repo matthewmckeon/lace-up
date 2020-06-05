@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Our project is hosted at: https://mattluthompson.github.io/lace-up/
 
 ## Available Scripts
 
