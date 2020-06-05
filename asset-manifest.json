@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/lace-up/static/css/main.a2824ef5.chunk.css",
-    "main.js": "/lace-up/static/js/main.a5441e82.chunk.js",
-    "main.js.map": "/lace-up/static/js/main.a5441e82.chunk.js.map",
+    "main.js": "/lace-up/static/js/main.5e2b735d.chunk.js",
+    "main.js.map": "/lace-up/static/js/main.5e2b735d.chunk.js.map",
     "runtime-main.js": "/lace-up/static/js/runtime-main.19010777.js",
     "runtime-main.js.map": "/lace-up/static/js/runtime-main.19010777.js.map",
     "static/css/2.52f2db83.chunk.css": "/lace-up/static/css/2.52f2db83.chunk.css",
     "static/js/2.eada9921.chunk.js": "/lace-up/static/js/2.eada9921.chunk.js",
     "static/js/2.eada9921.chunk.js.map": "/lace-up/static/js/2.eada9921.chunk.js.map",
     "index.html": "/lace-up/index.html",
-    "precache-manifest.56905c4e4af3b5699fb39363e3aab1fe.js": "/lace-up/precache-manifest.56905c4e4af3b5699fb39363e3aab1fe.js",
+    "precache-manifest.2d025083f126e34234fec8bc223ae302.js": "/lace-up/precache-manifest.2d025083f126e34234fec8bc223ae302.js",
     "service-worker.js": "/lace-up/service-worker.js",
     "static/css/2.52f2db83.chunk.css.map": "/lace-up/static/css/2.52f2db83.chunk.css.map",
     "static/css/main.a2824ef5.chunk.css.map": "/lace-up/static/css/main.a2824ef5.chunk.css.map",
@@ -29,6 +29,6 @@
     "static/css/2.52f2db83.chunk.css",
     "static/js/2.eada9921.chunk.js",
     "static/css/main.a2824ef5.chunk.css",
-    "static/js/main.a5441e82.chunk.js"
+    "static/js/main.5e2b735d.chunk.js"
   ]
 }
