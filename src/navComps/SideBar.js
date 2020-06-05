@@ -27,7 +27,7 @@ const SideBar = props => {
                 {(userLogged) ?
                     < div >
                         <li><a href={userLink}>
-                            {`${currentUser.displayName}'s Account`}
+                            {`My Account`}
                         </a></li>
                         <li><a href="/">Home</a></li>
                         <li><a href="/about">About</a></li>
