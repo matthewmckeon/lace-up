@@ -25,22 +25,28 @@ function ReferralLeaderboard(props) {
     } else {
         currentReferralList = ["no referrals yet"]
     }
-    console.log(currentReferralList)
+
+    let leaderboardList = []
+    
+    for (let [key, value] of Object.entries(props.users)) {
+        leaderboardList.push(value);
+    }
+
+    leaderboardList.sort((a,b) => {return b.score-a.score})
+
     return (
-        <div>
             <div>
                 <div className="card">
-                    <h1>Referral Leaderboard</h1>
-                    {currentReferralList.map((userId, index) => {
-                        return userId === "no referrals yet" ?
-                            <p>{"No referrals yet."}</p> : <Card key={index} className={classes3.root}>
-                                {props.users[userId].dateSignedUp + " - " + props.users[userId].firstName + " " + props.users[userId].lastName}
-                            </Card>
+                    <h1>Community Leaderboard (Top 10)</h1>
+                    {leaderboardList.map((user, index) => {
+                        if(index <= 9) {
+                            return <Card key={index} className={classes3.root}>
+                            {(index+1)+". "+user.firstName + " "+user.lastName+" - "+user.score+" referrals"}
+                             </Card>
+                        }
                     })}
                 </div>
             </div>
-            <div className="referralHistoryCard"></div>
-        </div>
     )
 }
 

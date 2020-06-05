@@ -25,21 +25,18 @@ function ReferralHistory(props) {
     } else {
         currentReferralList = ["no referrals yet"]
     }
-    console.log(currentReferralList)
+
     return (
         <div>
-            <div className="container">
-                <div className="card">
-                    <h1>Referral History</h1>
-                    {currentReferralList.map((userId, index) => {
-                        return userId === "no referrals yet" ?
-                            <p>{"No referrals yet."}</p> : <Card key={index} className={classes3.root}>
-                                {props.users[userId].dateSignedUp + " - " + props.users[userId].firstName + " " + props.users[userId].lastName}
-                            </Card>
-                    })}
-                </div>
+            <div className="card">
+                <h1>My Referral History</h1>
+                {currentReferralList.map((userId, index) => {
+                    return userId === "no referrals yet" ?
+                        <p>{"No referrals yet."}</p> : <Card key={index} className={classes3.root}>
+                            {props.users[userId].dateSignedUp + " - " + props.users[userId].firstName + " " + props.users[userId].lastName}
+                        </Card>
+                })}
             </div>
-            <div className="referralHistoryCard"></div>
         </div>
     )
 }
