@@ -44,16 +44,15 @@ export default function HowItWorks(props) {
         <div></div>
       ) : (
           <div
-            style={{ paddingBottom: "10px", backgroundColor: "black", opacity: "0.8" }}
+            style={{ paddingBottom: "10px", backgroundColor: "black", opacity: "0.8", paddingTop: "7px" }}
             className="buttons"
           >
-            <h2 style={{ color: "white" }}>Sign Up Now!</h2>
             <Button className="login" variant="contained" color="primary">
               <Link style={{ color: "white" }} to="/login">Login</Link>
             </Button>
             <div className="divider" />
-            <Button className="signup" variant="contained" style={{ backgroundColor: "gold" }}>
-              <Link style={{ color: "red" }} to="/register">Sign Up</Link>
+            <Button className="signup" variant="contained" color="primary">
+              <Link style={{ color: "white" }} to="/register">Sign Up</Link>
             </Button>
           </div>
         )}
