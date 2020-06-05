@@ -6,7 +6,7 @@ import ReferralHistory from "./ReferralHistory";
 import FriendButton from "./FriendButton.js";
 import Milestones from "./Milestones.js";
 import "./Account.css";
-import { HashRouter as Redirect } from "react-router-dom";
+import { BrowserRouter as Redirect } from "react-router-dom";
 import firebase from "firebase";
 import { base } from "../config/Firebase";
 

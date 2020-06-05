@@ -12,7 +12,7 @@ import MainFooter from "./Footer/MainFooter";
 import { base } from "./config/Firebase";
 import firebase from "firebase";
 
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 //BrowserRouter in App.js, Login.js, SignUp, and Account!!!!!!!!!!!!!
 
 export default class App extends Component {
