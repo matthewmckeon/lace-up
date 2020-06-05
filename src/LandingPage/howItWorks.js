@@ -7,7 +7,7 @@ import Card1 from "./Card1";
 import { Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { base } from '../config/Firebase';
+import { base } from "../config/Firebase";
 import { AWARDS } from "./Awards.js";
 import { RULES } from "./Rules.js";
 
@@ -26,17 +26,15 @@ const useStyles = makeStyles({
 export default function HowItWorks(props) {
   const classes = useStyles();
 
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   base.initializedApp.auth().onAuthStateChanged(function (user) {
     if (user) {
-      setIsLoggedIn(true)
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
     }
-    else {
-      setIsLoggedIn(false)
-    }
-
-  })
+  });
 
   return (
     <div className="landing">
@@ -60,9 +58,9 @@ export default function HowItWorks(props) {
             );
           })}
         </Grid>
-        {(isLoggedIn) ?
+        {isLoggedIn ? (
           <div></div>
-          :
+        ) : (
           <div
             style={{ paddingBottom: "10px", backgroundColor: "black" }}
             className="buttons"
@@ -76,7 +74,7 @@ export default function HowItWorks(props) {
               <Link to="/register">Sign Up</Link>
             </Button>
           </div>
-        }
+        )}
       </div>
     </div>
   );
